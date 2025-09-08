@@ -236,59 +236,38 @@ body, html {
 
 <script>
 const concepts = [
-    "OpenGL","GPU","Canvas","WebGL","Shader","Rasteryzacja","Renderowanie",
-    "VRAM","Frame Rate","Antialiasing","Texture Mapping","Vertex Buffer",
-    "HTML5","CSS3","Flexbox","Grid","JavaScript","WebAssembly","DOM","Canvas2D",
-    "WebGL2","Service Worker","IndexedDB","LocalStorage","SessionStorage",
-    "WebRTC","WebSocket","MediaStream","AudioContext","WebAudio",
-    "CSS Variables","CSS Animations","CSS Transforms","CSS Filters",
-    "Viewport","Responsive Design","Media Queries","SVG","Canvas API",
-    "Fetch API","Promises","Async/Await","Modules","Web Components",
-    "Custom Elements","Shadow DOM","Intersection Observer","Resize Observer","Performance API"
+    "OpenGL", "GPU", "Canvas", "WebGL", "Shader", "Rasteryzacja", "Renderowanie",
+    "VRAM", "Frame Rate", "Antialiasing", "Texture Mapping", "Vertex Buffer",
+    "HTML5", "CSS3", "Flexbox", "Grid", "JavaScript", "WebAssembly", "DOM", "Canvas2D",
+    "WebRTC", "MediaStream", "ShaderProgram", "VertexArray"
 ];
 
+const conceptDiv = document.getElementById('concepts');
 let i = 0;
-let interval;
 
-function startLoader() {
-    const conceptDiv = document.getElementById('concepts');
-    interval = setInterval(() => {
-        conceptDiv.textContent = concepts[i % concepts.length];
-        i++;
-    }, 200);
+// Pokaż pojęcia w szybkiej pętli
+const interval = setInterval(() => {
+    conceptDiv.textContent = concepts[i % concepts.length];
+    i++;
+}, 200);
 
-    setTimeout(() => {
-        clearInterval(interval);
-
-        const letter = document.getElementById('letterD');
-        const hub = document.getElementById('hub');
-        // pokaż hub
-        hub.classList.add('show');
-
-        // animacja D do lewego górnego rogu
-        letter.style.position = "fixed";
-        letter.style.top = "10px";
-        letter.style.left = "10px";
-        letter.style.fontSize = "50px";
-
-        // kliknięcie przenosi na zewnętrzną stronę
-        letter.addEventListener("click", ()=> {
-            window.location.href = "https://dawcio232.github.io/starfish";
-        });
-
-    }, 15000); // 15 sekund animacji pojęć
+// Funkcja przejścia do hubu
+function showHub() {
+    clearInterval(interval); // zatrzymujemy zmianę pojęć
+    document.getElementById('code-screen').style.display = 'none';
+    document.getElementById('loader').style.display = 'none';
+    const hub = document.getElementById('hub');
+    hub.style.display = 'flex';
+    document.body.style.overflow = 'auto';
 }
 
-function checkCode() {
-    const code = document.getElementById('code-input').value;
-    if(code === "3301"){
-        document.getElementById('code-screen').style.display = 'none';
-        document.getElementById('loader').style.display = 'flex';
-        startLoader();
-    } else {
-        document.getElementById('error-msg').textContent = "Niepoprawny kod!";
-    }
-}
+// Sekwencja: 2 sekundy kod diagnostyczny + 10 sekund animacja D
+setTimeout(() => {
+    document.getElementById('code-screen').style.display = 'none';
+    // pozostaw loader z D i pojęciami
+}, 2000);
+
+setTimeout(showHub, 12000); // po 12 sekundach pokaż hub
 </script>
 
 </body>
