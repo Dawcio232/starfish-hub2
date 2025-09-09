@@ -3,236 +3,257 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hub2 - Project Starfish</title>
+<title>Hub2 - Project Stargish</title>
 <style>
-    /* Podstawowe style */
     body, html {
         margin: 0;
         padding: 0;
         font-family: Arial, sans-serif;
-        background: #0f172a; /* Ciemny niebieski */
-        color: #fff;
-        overflow: hidden;
+        background: #0d1b2a; /* ciemny niebieski */
+        color: #ffffff;
     }
 
-    header h1 {
+    h1 {
         text-align: center;
-        font-size: 3rem;
-        margin-top: 30px;
-        color: #0ea5e9; /* Jasny niebieski */
-        animation: fadeIn 1.5s ease-out;
+        padding: 20px;
+        color: #00aaff; /* jasny niebieski */
     }
 
-    /* Animacja litery D */
-    #loader {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 50vh;
-        animation: fadeIn 1s ease-out;
-    }
-
-    #loader h1 {
-        font-size: 10rem;
-        color: #0ea5e9; /* Niebieski */
-        margin: 0;
-        animation: pulse 1s infinite alternate;
-    }
-
-    @keyframes pulse {
-        0% { transform: scale(1); opacity: 1; }
-        50% { transform: scale(1.1); opacity: 0.8; }
-        100% { transform: scale(1); opacity: 1; }
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-    }
-
-    /* Kategorie */
-    .category {
-        font-size: 2rem;
-        font-weight: bold;
-        color: #0ea5e9; /* Jasny niebieski */
-        margin-top: 40px;
-        text-align: center;
-        animation: fadeIn 1s ease-out;
+    h2.category {
+        margin: 40px 20px 10px 20px;
+        color: #33ccff; /* jaśniejszy akcent */
+        border-bottom: 2px solid #33ccff;
+        padding-bottom: 5px;
     }
 
     .hub-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 20px;
-        padding: 20px;
-        animation: fadeIn 1.5s ease-out;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+        padding: 0 20px 40px 20px;
     }
 
     .tool {
-        display: block;
-        background-color: #1e3a8a; /* Ciemny niebieski akcent */
-        border-radius: 8px;
+        background: #1b2a44; /* ciemniejszy niebieski */
         padding: 15px;
         text-align: center;
+        border-radius: 8px;
         text-decoration: none;
         color: #ffffff;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: background 0.3s;
     }
 
     .tool:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        background: #3388cc; /* jaśniejszy niebieski na hover */
     }
 
     .tool h3 {
-        margin: 10px 0;
-        font-size: 1.2rem;
-        font-weight: bold;
+        margin-bottom: 5px;
+        font-size: 16px;
     }
 
     .tool p {
-        font-size: 1rem;
-        color: #cbd5e1; /* Jasny szary */
+        font-size: 12px;
     }
 </style>
 </head>
 <body>
-
-<header>
-    <h1>Witamy w Hub2 - Project Stargish</h1>
-</header>
-
-<!-- Animacja litery D -->
-<div id="loader">
-    <h1>D</h1>
-    <div id="concepts"></div>
-</div>
-
-<script>
-    const concepts = [
-        "OpenGL", "GPU", "Canvas", "WebGL", "Shader", "Rasteryzacja", "Renderowanie",
-        "VRAM", "Frame Rate", "Antialiasing", "Texture Mapping", "Vertex Buffer",
-        "HTML5", "CSS3", "Flexbox", "Grid", "JavaScript", "WebAssembly", "DOM", "Canvas2D"
-    ];
-
-    const conceptDiv = document.getElementById('concepts');
-    let i = 0;
-
-    const interval = setInterval(() => {
-        conceptDiv.textContent = concepts[i % concepts.length];
-        i++;
-    }, 200);
-
-    // Sekwencja: animacja -> wyświetlenie kategorii
-    setTimeout(() => {
-        document.getElementById('loader').style.display = 'none';
-        document.body.style.overflow = 'auto';
-        clearInterval(interval);
-    }, 8000); // 8 sekund animacji
-</script>
-
-<!-- Kategorie (pusta pierwsza część, narzędzia w drugiej części) --><h2 class="category">Internet & Sieć</h2>
+<h1>Hub2 - Project Starfish</h1>
+<!-- 🌐 Internet & Sieć -->
+<h2 class="category">Internet & Sieć</h2>
 <div class="hub-grid">
-    <a class="tool" href="https://www.google.com/" target="_blank"><h3>Google</h3><p>Wyszukiwarka internetowa</p></a>
-    <a class="tool" href="https://www.bing.com/" target="_blank"><h3>Bing</h3><p>Wyszukiwarka internetowa</p></a>
-    <a class="tool" href="https://duckduckgo.com/" target="_blank"><h3>DuckDuckGo</h3><p>Wyszukiwarka z naciskiem na prywatność</p></a>
-    <a class="tool" href="https://www.yahoo.com/" target="_blank"><h3>Yahoo</h3><p>Portal internetowy i wyszukiwarka</p></a>
-    <a class="tool" href="https://www.ask.com/" target="_blank"><h3>Ask.com</h3><p>Wyszukiwarka internetowa</p></a>
-    <a class="tool" href="https://www.aol.com/" target="_blank"><h3>AOL</h3><p>Portal internetowy i dostawca usług e-mail</p></a>
-    <a class="tool" href="https://www.baidu.com/" target="_blank"><h3>Baidu</h3><p>Chińska wyszukiwarka internetowa</p></a>
-    <a class="tool" href="https://www.yandex.com/" target="_blank"><h3>Yandex</h3><p>Rosyjska wyszukiwarka internetowa</p></a>
-    <a class="tool" href="https://www.naver.com/" target="_blank"><h3>Naver</h3><p>Południowokoreańska wyszukiwarka internetowa</p></a>
-    <a class="tool" href="https://www.sogou.com/" target="_blank"><h3>Sogou</h3><p>Chińska wyszukiwarka internetowa</p></a>
+    <a class="tool" href="https://www.speedtest.net/" target="_blank"><h3>Speedtest</h3><p>Pomiar prędkości internetu</p></a>
+    <a class="tool" href="https://fast.com/" target="_blank"><h3>Fast.com</h3><p>Test prędkości Netflix</p></a>
+    <a class="tool" href="https://ping-test.net/" target="_blank"><h3>Ping Test</h3><p>Opóźnienia sieci</p></a>
+    <a class="tool" href="https://www.whatismybrowser.com/" target="_blank"><h3>Browser Info</h3><p>Szczegóły przeglądarki</p></a>
+    <a class="tool" href="https://www.deviceinfo.me/" target="_blank"><h3>Device Info</h3><p>Informacje o urządzeniu</p></a>
+    <a class="tool" href="https://www.webpagetest.org/" target="_blank"><h3>WebPageTest</h3><p>Test wydajności strony</p></a>
+    <a class="tool" href="https://gtmetrix.com/" target="_blank"><h3>GTmetrix</h3><p>Analiza prędkości strony</p></a>
+    <a class="tool" href="https://tools.pingdom.com/" target="_blank"><h3>Pingdom</h3><p>Analiza wydajności strony</p></a>
+    <a class="tool" href="https://www.pingdom.com/tools/" target="_blank"><h3>Pingdom Tools</h3><p>Diagnostyka strony</p></a>
+    <a class="tool" href="https://www.freetools.cloud/" target="_blank"><h3>Free Web Tools</h3><p>Różne narzędzia sieciowe</p></a>
+    <a class="tool" href="https://www.canyouseeme.org/" target="_blank"><h3>Can You See Me</h3><p>Test portów sieci</p></a>
+    <a class="tool" href="https://www.speedof.me/" target="_blank"><h3>SpeedOf.Me</h3><p>Test prędkości HTML5</p></a>
+    <a class="tool" href="https://www.browserling.com/tools" target="_blank"><h3>Browserling Tools</h3><p>Narzędzia sieciowe</p></a>
+    <a class="tool" href="https://www.site24x7.com/tools/" target="_blank"><h3>Site24x7</h3><p>Monitoring i diagnostyka</p></a>
+    <a class="tool" href="https://www.keycdn.com/tools/ping" target="_blank"><h3>Ping CDN</h3><p>Opóźnienia serwera</p></a>
+    <a class="tool" href="https://www.dotcom-tools.com/" target="_blank"><h3>Dotcom Tools</h3><p>Test wydajności globalnej</p></a>
+    <a class="tool" href="https://www.uptrends.com/tools" target="_blank"><h3>Uptrends</h3><p>Monitoring i diagnostyka</p></a>
+    <a class="tool" href="https://www.websiteplanet.com/webtools/" target="_blank"><h3>WebsitePlanet Tools</h3><p>Testy online dla stron</p></a>
+    <a class="tool" href="https://www.internetping.com/" target="_blank"><h3>Internet Ping</h3><p>Test ping globalny</p></a>
+    <a class="tool" href="https://dnschecker.org/" target="_blank"><h3>DNS Checker</h3><p>Sprawdzenie DNS z różnych lokalizacji</p></a>
+    <a class="tool" href="https://mxtoolbox.com/" target="_blank"><h3>MXToolbox</h3><p>Sprawdzenie DNS, MX, SMTP</p></a>
+    <a class="tool" href="https://www.traceroute.org/" target="_blank"><h3>Traceroute</h3><p>Diagnostyka trasy pakietów</p></a>
+    <a class="tool" href="https://www.iplocation.net/" target="_blank"><h3>IP Location</h3><p>Sprawdzenie geolokalizacji IP</p></a>
+    <a class="tool" href="https://viewdns.info/" target="_blank"><h3>ViewDNS</h3><p>Narzędzia DNS i sieciowe</p></a>
+    <a class="tool" href="https://whois.domaintools.com/" target="_blank"><h3>Whois Tools</h3><p>Informacje o domenach</p></a>
 </div>
+
+<!-- 🔊 Audio & Wideo -->
 <h2 class="category">Audio & Wideo</h2>
 <div class="hub-grid">
-    <a class="tool" href="https://www.youtube.com/" target="_blank"><h3>YouTube</h3><p>Platforma do udostępniania i oglądania filmów</p></a>
-    <a class="tool" href="https://www.vimeo.com/" target="_blank"><h3>Vimeo</h3><p>Platforma do udostępniania filmów w wysokiej jakości</p></a>
-    <a class="tool" href="https://www.dailymotion.com/" target="_blank"><h3>Dailymotion</h3><p>Platforma do udostępniania filmów</p></a>
-    <a class="tool" href="https://www.twitch.tv/" target="_blank"><h3>Twitch</h3><p>Platforma do transmisji na żywo, głównie gier komputerowych</p></a>
-    <a class="tool" href="https://www.spotify.com/" target="_blank"><h3>Spotify</h3><p>Serwis streamingowy muzyki</p></a>
-    <a class="tool" href="https://www.soundcloud.com/" target="_blank"><h3>SoundCloud</h3><p>Platforma do udostępniania i odkrywania muzyki</p></a>
-    <a class="tool" href="https://www.apple.com/music/" target="_blank"><h3>Apple Music</h3><p>Serwis streamingowy muzyki od Apple</p></a>
-    <a class="tool" href="https://www.pandora.com/" target="_blank"><h3>Pandora</h3><p>Serwis streamingowy muzyki i radia internetowego</p></a>
-    <a class="tool" href="https://www.soundclick.com/" target="_blank"><h3>SoundClick</h3><p>Platforma do udostępniania muzyki</p></a>
-    <a class="tool" href="https://www.mixcloud.com/" target="_blank"><h3>Mixcloud</h3><p>Platforma do udostępniania audycji radiowych i DJ-setów</p></a>
-</div>
+    <a class="tool" href="https://www.onlinemictest.com/" target="_blank"><h3>Mic Test</h3><p>Sprawdź mikrofon</p></a>
+    <a class="tool" href="https://www.speaker-test.com/" target="_blank"><h3>Speaker Test</h3><p>Test głośników</p></a>
+    <a class="tool" href="https://www.onlinemictest.com/soundcard-test/" target="_blank"><h3>Soundcard Test</h3><p>Diagnostyka audio</p></a>
+    <a class="tool" href="https://html5test.com/performance.html" target="_blank"><h3>HTML5 Performance</h3><p>Test wydajności HTML5</p></a>
+    <a class="tool" href="https://webglstats.com/" target="_blank"><h3>WebGL Stats</h3><p>Informacje o WebGL i GPU</p></a>
+    <a class="tool" href="https://www.onlinemictest.com/audio" target="_blank"><h3>Audio Test</h3><p>Test audio online</p></a>
+    <a class="tool" href="https://www.onlinemictest.com/sound-level-meter" target="_blank"><h3>Sound Level Meter</h3><p>Pomiar poziomu dźwięku</p></a>
+    <a class="tool" href="https://www.splmeter.com/" target="_blank"><h3>SPL Meter</h3><p>Pomiar decybeli</p></a>
+    <a class="tool" href="https://www.onlinemictest.com/mic-check" target="_blank"><h3>Mic Check</h3><p>Diagnostyka mikrofonu</p></a>
+    <a class="tool" href="https://www.audio-check.net/" target="_blank"><h3>Audio Check</h3><p>Sprawdzenie dźwięku online</p></a>
+    <a class="tool" href="https://www.audiotests.com/" target="_blank"><h3>Audio Tests</h3><p>Test sprzętu audio</p></a>
+    <a class="tool" href="https://www.audio.online/" target="_blank"><h3>Audio Online</h3><p>Testy mikrofonu i głośników</p></a>
+    <a class="tool" href="https://www.onlinemictest.com/mic-test/" target="_blank"><h3>Mic Online</h3><p>Test mikrofonu</p></a>
+    <a class="tool" href="https://www.speakercheck.com/" target="_blank"><h3>Speaker Check</h3><p>Sprawdzenie głośników</p></a>
+    <a class="tool" href="https://www.audiofile-online.com/" target="_blank"><h3>Audio File Test</h3><p>Diagnostyka audio online</p></a>
+    <a class="tool" href="https://www.audiotestonline.com/" target="_blank"><h3>Audio Test Online</h3><p>Test sprzętu audio</p></a>
+    <a class="tool" href="https://www.miccheck.io/" target="_blank"><h3>MicCheck.io</h3><p>Test mikrofonu online</p></a>
+    <a class="tool" href="https://www.miclevel.com/" target="_blank"><h3>Mic Level</h3><p>Pomiar poziomu mikrofonu</p></a>
+<!-- 💻 Sprzęt & Przeglądarka -->
 <h2 class="category">Sprzęt & Przeglądarka</h2>
 <div class="hub-grid">
-    <a class="tool" href="https://www.cnet.com/" target="_blank"><h3>CNET</h3><p>Recenzje i informacje o elektronice</p></a>
-    <a class="tool" href="https://www.tomshardware.com/" target="_blank"><h3>Tom's Hardware</h3><p>Poradniki i recenzje sprzętu komputerowego</p></a>
-    <a class="tool" href="https://www.techradar.com/" target="_blank"><h3>TechRadar</h3><p>Recenzje technologiczne i informacje o sprzęcie</p></a>
-    <a class="tool" href="https://www.theverge.com/" target="_blank"><h3>The Verge</h3><p>Wiadomości i recenzje technologiczne</p></a>
-    <a class="tool" href="https://www.wired.com/" target="_blank"><h3>Wired</h3><p>Magazyn o technologii i kulturze</p></a>
-    <a class="tool" href="https://www.engadget.com/" target="_blank"><h3>Engadget</h3><p>Recenzje i wiadomości technologiczne</p></a>
-    <a class="tool" href="https://www.anandtech.com/" target="_blank"><h3>AnandTech</h3><p>Recenzje sprzętu komputerowego i technologii</p></a>
-    <a class="tool" href="https://www.extremetech.com/" target="_blank"><h3>ExtremeTech</h3><p>Wiadomości i recenzje technologiczne</p></a>
-    <a class="tool" href="https://www.pcworld.com/" target="_blank"><h3>PCWorld</h3><p>Poradniki i recenzje sprzętu komputerowego</p></a>
-    <a class="tool" href="https://www.digitaltrends.com/" target="_blank"><h3>Digital Trends</h3><p>Wiadomości i recenzje technologiczne</p></a>
+    <a class="tool" href="https://browserleaks.com/" target="_blank"><h3>BrowserLeaks</h3><p>Test zabezpieczeń przeglądarki</p></a>
+    <a class="tool" href="https://webglreport.com/" target="_blank"><h3>WebGL Report</h3><p>Informacje o WebGL i GPU</p></a>
+    <a class="tool" href="https://caniuse.com/" target="_blank"><h3>Can I Use</h3><p>Sprawdzenie obsługi HTML/CSS/JS</p></a>
+    <a class="tool" href="https://html5test.com/" target="_blank"><h3>HTML5 Test</h3><p>Sprawdzenie zgodności przeglądarki</p></a>
+    <a class="tool" href="https://css3test.com/" target="_blank"><h3>CSS3 Test</h3><p>Test wsparcia CSS3</p></a>
+    <a class="tool" href="https://caniuse.com/css-grid" target="_blank"><h3>CSS Grid Support</h3><p>Sprawdzenie wsparcia CSS Grid</p></a>
+    <a class="tool" href="https://caniuse.com/css-flexbox" target="_blank"><h3>Flexbox Test</h3><p>Sprawdzenie wsparcia Flexbox</p></a>
+    <a class="tool" href="https://browseraudit.com/" target="_blank"><h3>Browser Audit</h3><p>Analiza bezpieczeństwa przeglądarki</p></a>
+    <a class="tool" href="https://www.computerhope.com/jargon/b/browser.htm" target="_blank"><h3>Browser Info</h3><p>Informacje o przeglądarce</p></a>
+    <a class="tool" href="https://www.deviceinfo.me/" target="_blank"><h3>Device Info</h3><p>Informacje o sprzęcie</p></a>
+    <a class="tool" href="https://www.whatismybrowser.com/" target="_blank"><h3>WhatIsMyBrowser</h3><p>Szczegóły przeglądarki</p></a>
+    <a class="tool" href="https://www.iplocation.net/" target="_blank"><h3>IP Location</h3><p>Geolokalizacja urządzenia</p></a>
+    <a class="tool" href="https://www.useragentstring.com/" target="_blank"><h3>UserAgent Info</h3><p>Informacje o UA przeglądarki</p></a>
+    <a class="tool" href="https://browserstack.com/" target="_blank"><h3>BrowserStack</h3><p>Testowanie przeglądarek online</p></a>
+    <a class="tool" href="https://www.netsparker.com/web-vulnerability-scanner/" target="_blank"><h3>Netsparker Test</h3><p>Test bezpieczeństwa</p></a>
+    <a class="tool" href="https://pentest-tools.com/network-vulnerability-scanning" target="_blank"><h3>Pentest Tools</h3><p>Skany bezpieczeństwa sieci</p></a>
+    <a class="tool" href="https://www.browserleaks.com/webrtc" target="_blank"><h3>WebRTC Leak</h3><p>Sprawdzenie wycieków IP</p></a>
+    <a class="tool" href="https://panopticlick.eff.org/" target="_blank"><h3>Panopticlick</h3><p>Test prywatności przeglądarki</p></a>
+    <a class="tool" href="https://www.ssltest.net/" target="_blank"><h3>SSL Test</h3><p>Test certyfikatów SSL</p></a>
+    <a class="tool" href="https://www.grc.com/" target="_blank"><h3>GRC Tests</h3><p>Testy bezpieczeństwa online</p></a>
+    <a class="tool" href="https://www.shodan.io/" target="_blank"><h3>Shodan</h3><p>Wyszukiwanie urządzeń w sieci</p></a>
+    <a class="tool" href="https://censys.io/" target="_blank"><h3>Censys</h3><p>Analiza hostów i certyfikatów</p></a>
+    <a class="tool" href="https://browseraudit.com/" target="_blank"><h3>Browser Audit</h3><p>Analiza przeglądarki</p></a>
+    <a class="tool" href="https://browserprint.info/" target="_blank"><h3>Browser Print</h3><p>Identyfikacja przeglądarki</p></a>
+    <a class="tool" href="https://www.exploit-db.com/" target="_blank"><h3>Exploit DB</h3><p>Baza podatności</p></a>
 </div>
+
+<!-- 🔐 Bezpieczeństwo -->
 <h2 class="category">Bezpieczeństwo</h2>
 <div class="hub-grid">
-    <a class="tool" href="https://www.kaspersky.com/" target="_blank"><h3>Kaspersky</h3><p>Oprogramowanie antywirusowe i zabezpieczenia</p></a>
-    <a class="tool" href="https://www.bitdefender.com/" target="_blank"><h3>Bitdefender</h3><p>Oprogramowanie antywirusowe i zabezpieczenia</p></a>
-    <a class="tool" href="https://www.norton.com/" target="_blank"><h3>Norton</h3><p>Oprogramowanie antywirusowe i zabezpieczenia</p></a>
-    <a class="tool" href="https://www.mcafee.com/" target="_blank"><h3>McAfee</h3><p>Oprogramowanie antywirusowe i zabezpieczenia</p></a>
-    <a class="tool" href="https://www.avast.com/" target="_blank"><h3>Avast</h3><p>Oprogramowanie antywirusowe i zabezpieczenia</p></a>
-    <a class="tool" href="https://www.avg.com/" target="_blank"><h3>AVG</h3><p>Oprogramowanie antywirusowe i zabezpieczenia</p></a>
-    <a class="tool" href="https://www.avira.com/" target="_blank"><h3>Avira</h3><p>Oprogramowanie antywirusowe i zabezpieczenia</p></a>
-    <a class="tool" href="https://www.f-secure.com/" target="_blank"><h3>F-Secure</h3><p>Oprogramowanie antywirusowe i zabezpieczenia</p></a>
-    <a class="tool" href="https://www.trendmicro.com/" target="_blank"><h3>Trend Micro</h3><p>Oprogramowanie antywirusowe i zabezpieczenia</p></a>
-    <a class="tool" href="https://www.sophos.com/" target="_blank"><h3>Sophos</h3><p>Oprogramowanie antywirusowe i zabezpieczenia</p></a>
+    <a class="tool" href="https://shodan.io/" target="_blank"><h3>Shodan</h3><p>Wyszukiwanie urządzeń w sieci</p></a>
+    <a class="tool" href="https://censys.io/" target="_blank"><h3>Censys</h3><p>Analiza hostów i certyfikatów</p></a>
+    <a class="tool" href="https://www.exploit-db.com/" target="_blank"><h3>Exploit DB</h3><p>Baza podatności i exploitów</p></a>
+    <a class="tool" href="https://www.cvedetails.com/" target="_blank"><h3>CVE Details</h3><p>Informacje o podatnościach</p></a>
+    <a class="tool" href="https://www.sslshopper.com/" target="_blank"><h3>SSL Checker</h3><p>Sprawdź certyfikaty SSL</p></a>
+    <a class="tool" href="https://securityheaders.com/" target="_blank"><h3>Security Headers</h3><p>Sprawdzenie nagłówków HTTP</p></a>
+    <a class="tool" href="https://www.talosintelligence.com/reputation_center" target="_blank"><h3>Talos Intelligence</h3><p>Ocena reputacji domen</p></a>
+    <a class="tool" href="https://www.virustotal.com/gui/home/url" target="_blank"><h3>VirusTotal URL</h3><p>Sprawdzenie linków online</p></a>
+    <a class="tool" href="https://www.virustotal.com/gui/home/file" target="_blank"><h3>VirusTotal File</h3><p>Analiza plików</p></a>
+    <a class="tool" href="https://www.malwarebytes.com/" target="_blank"><h3>Malwarebytes</h3><p>Test online zagrożeń</p></a>
+    <a class="tool" href="https://www.qualys.com/" target="_blank"><h3>Qualys</h3><p>Test bezpieczeństwa online</p></a>
+    <a class="tool" href="https://www.openssl.org/" target="_blank"><h3>OpenSSL Test</h3><p>Testy kryptograficzne</p></a>
+    <a class="tool" href="https://www.ssllabs.com/ssltest/" target="_blank"><h3>SSL Labs</h3><p>Test SSL i TLS</p></a>
+    <a class="tool" href="https://pentest-tools.com/network-vulnerability-scanning" target="_blank"><h3>Pentest Tools</h3><p>Skany sieci</p></a>
+    <a class="tool" href="https://www.zapproxy.org/" target="_blank"><h3>OWASP ZAP</h3><p>Test bezpieczeństwa aplikacji</p></a>
+    <a class="tool" href="https://www.netsparker.com/web-vulnerability-scanner/" target="_blank"><h3>Netsparker</h3><p>Test podatności aplikacji</p></a>
+    <a class="tool" href="https://www.acunetix.com/" target="_blank"><h3>Acunetix</h3><p>Skany bezpieczeństwa WWW</p></a>
+    <a class="tool" href="https://www.detectify.com/" target="_blank"><h3>Detectify</h3><p>Monitoring bezpieczeństwa</p></a>
+    <a class="tool" href="https://www.hackerone.com/" target="_blank"><h3>HackerOne</h3><p>Bug bounty platform</p></a>
+    <a class="tool" href="https://www.bugbountyhq.com/" target="_blank"><h3>Bug Bounty HQ</h3><p>Platforma testów bezpieczeństwa</p></a>
+    <a class="tool" href="https://www.cvedetails.com/" target="_blank"><h3>CVE Lookup</h3><p>Informacje o podatnościach</p></a>
+    <a class="tool" href="https://www.openbugbounty.org/" target="_blank"><h3>Open Bug Bounty</h3><p>Testy bezpieczeństwa online</p></a>
+    <a class="tool" href="https://www.cyberscore.io/" target="_blank"><h3>CyberScore</h3><p>Ocena bezpieczeństwa stron</p></a>
+    <a class="tool" href="https://www.siteguarding.com/" target="_blank"><h3>SiteGuarding</h3><p>Sprawdzenie bezpieczeństwa WWW</p></a>
+    <a class="tool" href="https://pentest-cert.com/" target="_blank"><h3>Pentest Cert</h3><p>Certyfikacja testów bezpieczeństwa</p></a>
 </div>
+
 <!-- 🛠️ Programowanie -->
 <h2 class="category">Programowanie</h2>
 <div class="hub-grid">
-    <a class="tool" href="https://www.github.com/" target="_blank"><h3>GitHub</h3><p>Platforma do hostingu kodu źródłowego</p></a>
-    <a class="tool" href="https://www.gitlab.com/" target="_blank"><h3>GitLab</h3><p>Platforma DevOps i hostingu kodu</p></a>
-    <a class="tool" href="https://www.bitbucket.org/" target="_blank"><h3>Bitbucket</h3><p>Platforma do hostingu kodu źródłowego</p></a>
-    <a class="tool" href="https://www.stackoverflow.com/" target="_blank"><h3>Stack Overflow</h3><p>Forum i pomoc dla programistów</p></a>
-    <a class="tool" href="https://www.codewars.com/" target="_blank"><h3>Codewars</h3><p>Ćwiczenia w programowaniu w różnych językach</p></a>
-    <a class="tool" href="https://www.hackerrank.com/" target="_blank"><h3>HackerRank</h3><p>Platforma do nauki i testów kodowania</p></a>
-    <a class="tool" href="https://www.codesignal.com/" target="_blank"><h3>CodeSignal</h3><p>Testy kodowania i nauka programowania</p></a>
-    <a class="tool" href="https://www.repl.it/" target="_blank"><h3>Replit</h3><p>Edytor online i środowisko programistyczne</p></a>
-    <a class="tool" href="https://www.jsfiddle.net/" target="_blank"><h3>JSFiddle</h3><p>Testowanie HTML/CSS/JS online</p></a>
-    <a class="tool" href="https://codepen.io/" target="_blank"><h3>CodePen</h3><p>Edytor online HTML/CSS/JS i projekty front-end</p></a>
-    <a class="tool" href="https://playcode.io/" target="_blank"><h3>PlayCode</h3><p>Edytor JS online</p></a>
-    <a class="tool" href="https://validator.w3.org/" target="_blank"><h3>HTML Validator</h3><p>Sprawdzenie poprawności kodu HTML</p></a>
-    <a class="tool" href="https://jigsaw.w3.org/css-validator/" target="_blank"><h3>CSS Validator</h3><p>Sprawdzenie poprawności CSS</p></a>
-    <a class="tool" href="https://jshint.com/" target="_blank"><h3>JS Lint</h3><p>Sprawdzenie poprawności JavaScript</p></a>
+    <a class="tool" href="https://jsfiddle.net/" target="_blank"><h3>JSFiddle</h3><p>Test HTML/CSS/JS online</p></a>
+    <a class="tool" href="https://codepen.io/" target="_blank"><h3>CodePen</h3><p>Edytor online HTML/CSS/JS</p></a>
+    <a class="tool" href="https://playcode.io/" target="_blank"><h3>PlayCode</h3><p>Edytor online JS</p></a>
+    <a class="tool" href="https://validator.w3.org/" target="_blank"><h3>HTML Validator</h3><p>Sprawdź poprawność kodu HTML</p></a>
+    <a class="tool" href="https://jigsaw.w3.org/css-validator/" target="_blank"><h3>CSS Validator</h3><p>Sprawdź poprawność CSS</p></a>
+    <a class="tool" href="https://jshint.com/" target="_blank"><h3>JS Lint</h3><p>Sprawdzenie poprawności JS</p></a>
     <a class="tool" href="https://www.debuggex.com/" target="_blank"><h3>Regex Tester</h3><p>Testowanie wyrażeń regularnych</p></a>
-    <a class="tool" href="https://www.toptal.com/developers/cssref" target="_blank"><h3>CSS Reference</h3><p>Sprawdzenie właściwości CSS online</p></a>
+    <a class="tool" href="https://www.toptal.com/developers/cssref" target="_blank"><h3>CSS Reference</h3><p>Sprawdzenie właściwości CSS</p></a>
     <a class="tool" href="https://jsperf.com/" target="_blank"><h3>JS Performance</h3><p>Test wydajności JavaScript</p></a>
     <a class="tool" href="https://browserling.com/tools" target="_blank"><h3>Browserling Tools</h3><p>Różne testy przeglądarek online</p></a>
-    <a class="tool" href="https://www.rapidtables.com/tools/" target="_blank"><h3>Online Web Tools</h3><p>Narzędzia HTML/CSS/JS online</p></a>
+    <a class="tool" href="https://www.rapidtables.com/tools/" target="_blank"><h3>Online Web Tools</h3><p>HTML/CSS/JS narzędzia online</p></a>
+    <a class="tool" href="https://www.w3schools.com/html/html_examples.asp" target="_blank"><h3>W3Schools HTML</h3><p>Testy HTML online</p></a>
+    <a class="tool" href="https://www.w3schools.com/css/css_examples.asp" target="_blank"><h3>W3Schools CSS</h3><p>Testy CSS online</p></a>
+    <a class="tool" href="https://www.w3schools.com/js/js_examples.asp" target="_blank"><h3>W3Schools JS</h3><p>Testy JavaScript online</p></a>
+    <a class="tool" href="https://www.freeformatter.com/" target="_blank"><h3>Free Formatter</h3><p>Walidacja kodu online</p></a>
+    <a class="tool" href="https://www.codacy.com/" target="_blank"><h3>Codacy</h3><p>Analiza jakości kodu</p></a>
+    <a class="tool" href="https://www.codefactor.io/" target="_blank"><h3>CodeFactor</h3><p>Analiza kodu online</p></a>
+    <a class="tool" href="https://www.linterhub.com/" target="_blank"><h3>LinterHub</h3><p>Walidacja kodu online</p></a>
+    <a class="tool" href="https://www.sonarsource.com/" target="_blank"><h3>SonarCloud</h3><p>Analiza statyczna kodu</p></a>
+    <a class="tool" href="https://www.checkbot.io/" target="_blank"><h3>Checkbot</h3><p>Test SEO i bezpieczeństwa</p></a>
+    <a class="tool" href="https://www.html-tidy.org/" target="_blank"><h3>HTML Tidy</h3><p>Walidacja HTML</p></a>
+    <a class="tool" href="https://www.csstidy.com/" target="_blank"><h3>CSS Tidy</h3><p>Walidacja CSS</p></a>
+    <a class="tool" href="https://www.jslint.com/" target="_blank"><h3>JSLint</h3><p>Walidacja JS</p></a>
+    <a class="tool" href="https://www.javascriptlint.com/" target="_blank"><h3>JavaScript Lint</h3><p>Walidacja JS online</p></a>
 </div>
-<section>
-    <h2 class="category">Internet & Sieć</h2>
-    <div class="hub-grid">
-        <!-- Tutaj będą linki w drugiej części -->
-    </div>
+<!-- 🖌️ Kolory & Grafika -->
+<h2 class="category">Kolory & Grafika</h2>
+<div class="hub-grid">
+    <a class="tool" href="https://www.colorhexa.com/" target="_blank"><h3>Color Picker</h3><p>Test kolorów i gradientów online</p></a>
+    <a class="tool" href="https://coolors.co/" target="_blank"><h3>Coolors</h3><p>Generowanie palet kolorów</p></a>
+    <a class="tool" href="https://material.io/resources/color/" target="_blank"><h3>Material Color Tool</h3><p>Palety kolorów Material Design</p></a>
+    <a class="tool" href="https://www.gradientmagic.com/" target="_blank"><h3>Gradient Magic</h3><p>Tworzenie gradientów online</p></a>
+    <a class="tool" href="https://flatuicolors.com/" target="_blank"><h3>Flat UI Colors</h3><p>Palety Flat Design</p></a>
+    <a class="tool" href="https://www.colorzilla.com/" target="_blank"><h3>ColorZilla</h3><p>Wybór kolorów i gradientów</p></a>
+    <a class="tool" href="https://html-color-codes.info/" target="_blank"><h3>HTML Color Codes</h3><p>Kody kolorów HTML</p></a>
+    <a class="tool" href="https://www.colorhexa.com/color-names" target="_blank"><h3>Color Names</h3><p>Sprawdź nazwy kolorów</p></a>
+    <a class="tool" href="https://www.colourcodepicker.com/" target="_blank"><h3>Colour Code Picker</h3><p>Wybór koloru online</p></a>
+    <a class="tool" href="https://www.colorspire.com/" target="_blank"><h3>ColorSpire</h3><p>Inspiracja paletami kolorów</p></a>
+    <a class="tool" href="https://paletton.com/" target="_blank"><h3>Paletton</h3><p>Tworzenie palet kolorów</p></a>
+    <a class="tool" href="https://www.sessions.edu/color-calculator/" target="_blank"><h3>Color Calculator</h3><p>Kalkulator kolorów online</p></a>
+    <a class="tool" href="https://www.color-hex.com/" target="_blank"><h3>Color Hex</h3><p>Kody kolorów HEX</p></a>
+    <a class="tool" href="https://www.colors.commutercreative.com/" target="_blank"><h3>Colors Commuter</h3><p>Palety i gradienty kolorów</p></a>
+    <a class="tool" href="https://www.color-blindness.com/coblis-color-blindness-simulator/" target="_blank"><h3>Color Blindness Simulator</h3><p>Symulator daltonizmu</p></a>
+    <a class="tool" href="https://www.colormind.io/" target="_blank"><h3>Colormind</h3><p>AI generowanie palet kolorów</p></a>
+    <a class="tool" href="https://www.design-seeds.com/" target="_blank"><h3>Design Seeds</h3><p>Inspiracje palet kolorów</p></a>
+    <a class="tool" href="https://www.colorhunt.co/" target="_blank"><h3>Color Hunt</h3><p>Popularne palety kolorów</p></a>
+    <a class="tool" href="https://color.adobe.com/" target="_blank"><h3>Adobe Color</h3><p>Palety kolorów Adobe</p></a>
+    <a class="tool" href="https://www.0to255.com/" target="_blank"><h3>0to255</h3><p>Tworzenie odcieni kolorów</p></a>
+    <a class="tool" href="https://htmlcolorcodes.com/color-picker/" target="_blank"><h3>HTML Color Picker</h3><p>Wybór kolorów HTML</p></a>
+    <a class="tool" href="https://www.cssdrive.com/imagepalette/" target="_blank"><h3>Image Palette</h3><p>Generowanie palet z obrazów</p></a>
+    <a class="tool" href="https://www.tigercolor.com/color-lab/color-theory/color-theory-intro.htm" target="_blank"><h3>Tiger Color Lab</h3><p>Teoria kolorów</p></a>
+    <a class="tool" href="https://color.adobe.com/explore" target="_blank"><h3>Explore Colors</h3><p>Przeglądanie gotowych palet</p></a>
+    <a class="tool" href="https://www.colorschemer.com/" target="_blank"><h3>ColorSchemer</h3><p>Tworzenie palet kolorów</p></a>
+</div>
 
-    <h2 class="category">Audio & Wideo</h2>
-    <div class="hub-grid">
-    </div>
-
-    <h2 class="category">Sprzęt & Przeglądarka</h2>
-    <div class="hub-grid">
-    </div>
-
-    <h2 class="category">Bezpieczeństwo</h2>
-    <div class="hub-grid">
-    </div>
-
-    <h2 class="category">Programowanie</h2>
-    <div class="hub-grid">
-    </div>
-
-    <h2 class="category">Kolory & Grafika</h2>
-    <div class="hub-grid">
-    </div>
-</section>
-
-</body>
-</html>
+<!-- 🔧 Narzędzia systemowe -->
+<h2 class="category">Narzędzia systemowe</h2>
+<div class="hub-grid">
+    <a class="tool" href="https://www.systeminformation.com/" target="_blank"><h3>System Info</h3><p>Informacje o systemie operacyjnym</p></a>
+    <a class="tool" href="https://www.cpu-z.com/" target="_blank"><h3>CPU-Z</h3><p>Informacje o procesorze</p></a>
+    <a class="tool" href="https://www.gpucheck.com/" target="_blank"><h3>GPU Check</h3><p>Informacje o karcie graficznej</p></a>
+    <a class="tool" href="https://www.hwinfo.com/" target="_blank"><h3>HWInfo</h3><p>Szczegółowe dane sprzętowe</p></a>
+    <a class="tool" href="https://www.speccy.com/" target="_blank"><h3>Speccy</h3><p>Analiza sprzętu PC</p></a>
+    <a class="tool" href="https://www.glarysoft.com/glary-utilities/" target="_blank"><h3>Glary Utilities</h3><p>Narzędzia diagnostyczne systemu</p></a>
+    <a class="tool" href="https://www.passmark.com/products/pt.htm" target="_blank"><h3>Performance Test</h3><p>Test wydajności komputera</p></a>
+    <a class="tool" href="https://www.techpowerup.com/gpuz/" target="_blank"><h3>GPU-Z</h3><p>Informacje o GPU</p></a>
+    <a class="tool" href="https://www.memtest86.com/" target="_blank"><h3>MemTest86</h3><p>Test pamięci RAM</p></a>
+    <a class="tool" href="https://www.crystaldiskinfo.com/" target="_blank"><h3>CrystalDiskInfo</h3><p>Informacje o dyskach</p></a>
+    <a class="tool" href="https://www.diskcheckup.com/" target="_blank"><h3>Disk Checkup</h3><p>Analiza stanu dysków</p></a>
+    <a class="tool" href="https://www.hdtune.com/" target="_blank"><h3>HD Tune</h3><p>Test dysków twardych</p></a>
+    <a class="tool" href="https://www.pcmark.com/" target="_blank"><h3>PCMark</h3><p>Testy wydajności PC</p></a>
+    <a class="tool" href="https://www.3dmark.com/" target="_blank"><h3>3DMark</h3><p>Benchmark graficzny</p></a>
+    <a class="tool" href="https://www.userbenchmark.com/" target="_blank"><h3>UserBenchmark</h3><p>Test wydajności PC online</p></a>
+    <a class="tool" href="https://www.latencymon.com/" target="_blank"><h3>LatencyMon</h3><p>Test opóźnień systemu</p></a>
+    <a class="tool" href="https://www.openhardwaremonitor.org/" target="_blank"><h3>Open Hardware Monitor</h3><p>Monitorowanie sprzętu</p></a>
+    <a class="tool" href="https://www.sierrasoft.com/products/sysinfo/" target="_blank"><h3>System Info Tool</h3><p>Analiza OS i sprzętu</p></a>
+    <a class="tool" href="https://www.passmark.com/products/memtest.htm" target="_blank"><h3>PassMark MemTest</h3><p>Test pamięci RAM</p></a>
+    <a class="tool" href="https://www.procmon.com/" target="_blank"><h3>Process Monitor</h3><p>Monitorowanie procesów Windows</p></a>
+    <a class="tool" href="https://www.eventviewer.com/" target="_blank"><h3>Event Viewer</h3><p>Logi systemowe Windows</p></a>
+    <a class="tool" href="https://www.ntinfo.com/" target="_blank"><h3>NTInfo</h3><p>Informacje o Windows</p></a>
+    <a class="tool" href="https://www.benchmarkhq.ru/" target="_blank"><h3>Benchmark HQ</h3><p>Testy wydajności sprzętu</p></a>
+    <a class="tool" href="https://www.pc-specs.com/" target="_blank"><h3>PC Specs</h3><p>Informacje o PC</p></a>
+    <a class="tool" href="https://www.diskmark.com/" target="_blank"><h3>DiskMark</h3><p>Benchmark dysków</p></a>
+</div>
