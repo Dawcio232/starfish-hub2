@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
@@ -43,13 +43,53 @@ body, html {
     margin-top: 30px;
     font-size: 24px;
     text-align: center;
+    color: #ff99ff; /* różowo-niebieski akcent */
 }
 
-/* HUB (TU BĘDZIE DRUGA CZĘŚĆ Z KATEGORIAMI) */
+/* HUB */
 #hub {
     display: none;
     padding: 20px;
     overflow: auto;
+}
+
+#hub h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 32px;
+    color: #ff99ff;
+}
+
+/* Kategorie */
+.category {
+    font-size: 24px;
+    margin: 30px 0 10px 10px;
+    color: #ff99ff; /* różowo-niebieski akcent */
+}
+
+/* Przyciski narzędzi */
+.hub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.tool {
+    background: linear-gradient(135deg, #00bfff, #ff99ff);
+    padding: 20px;
+    text-align: center;
+    border-radius: 12px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.tool:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5);
 }
 </style>
 </head>
@@ -64,6 +104,7 @@ body, html {
 <!-- HUB -->
 <div id="hub">
     <h1>Hub2 – Project Stargish</h1>
+    <!-- Kategorie i przyciski narzędzi będą wstawione w drugiej części -->
 
     <!-- 🌐 Internet & Sieć -->
     <h2 class="category">Internet & Sieć</h2>
