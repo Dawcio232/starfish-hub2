@@ -3,292 +3,238 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hub2 - Project Starfish</title>
+<title>Hub2 – Project Stargish</title>
 <style>
-    body, html {
-        margin: 0;
-        padding: 0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        height: 100%;
-        background: #101020;
-        color: #fff;
-        overflow: hidden;
-    }
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #1e1e2f;
+    color: #fff;
+    overflow: hidden;
+}
 
-    /* LOGOWANIE - KOD/ HASŁO */
-    #login-screen {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: #101020;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        z-index: 300;
-    }
-    #login-screen input {
-        padding: 12px 20px;
-        font-size: 18px;
-        border-radius: 8px;
-        border: 2px solid #66ccff;
-        background: #101020;
-        color: #fff;
-        margin-top: 20px;
-    }
-    #login-screen button {
-        margin-top: 20px;
-        padding: 12px 24px;
-        font-size: 18px;
-        border-radius: 8px;
-        border: none;
-        cursor: pointer;
-        background: linear-gradient(45deg, #ff66cc, #66ccff);
-        color: #fff;
-        font-weight: bold;
-        transition: 0.3s;
-    }
-    #login-screen button:hover {
-        opacity: 0.8;
-    }
+/* Ekran logowania */
+#login-screen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #1e1e2f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#login-screen input {
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 10px;
+}
+#login-screen button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    background: #1e90ff;
+    color: #fff;
+    cursor: pointer;
+}
+#login-screen button:hover { background: #ff99ff; }
 
-    /* INTRO */
-    #intro {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: #101020;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        z-index: 250;
-        opacity: 0;
-    }
-    #intro h1 {
-        font-size: 120px;
-        font-weight: bold;
-        color: #ff66cc;
-        animation: pulse 1s infinite alternate;
-    }
-    #intro p {
-        margin-top: 20px;
-        font-size: 28px;
-        color: #66ccff;
-        animation: fadeText 2s ease-in-out infinite alternate;
-    }
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        100% { transform: scale(1.2); }
-    }
-    @keyframes fadeText {
-        from { opacity: 0.5; }
-        to { opacity: 1; }
-    }
+/* LOADER / Intro */
+#loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #1e1e2f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+#loader h1 {
+    font-size: 120px;
+    font-weight: bold;
+}
+#concepts {
+    margin-top: 30px;
+    font-size: 24px;
+    text-align: center;
+}
 
-    /* HUB */
-    #hub {
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-        background: #101020;
-        min-height: 100vh;
-    }
-    #hub h1 {
-        text-align: center;
-        margin-bottom: 20px;
-        color: #ff66cc;
-    }
-    .hub-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 15px;
-        width: 100%;
-        max-width: 1400px;
-    }
-    .tool {
-        background: #202040;
-        padding: 18px;
-        text-align: center;
-        border-radius: 10px;
-        text-decoration: none;
-        color: #fff;
-        transition: transform 0.3s, box-shadow 0.3s;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    }
-    .tool:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 10px rgba(0,0,0,0.5);
-    }
-    .tool h2 { font-size: 16px; margin-bottom: 8px; }
-    .tool p { font-size: 12px; }
+/* Hub */
+#hub {
+    display: none;
+    padding: 20px;
+    overflow: auto;
+}
+#hub h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.category {
+    width: 100%;
+    text-align: left;
+    font-size: 24px;
+    margin: 40px 0 20px 10px;
+    color: #ff99ff; /* różowo-niebieski akcent */
+}
+.hub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+.tool {
+    background: #2c2c44;
+    padding: 20px;
+    text-align: center;
+    border-radius: 12px;
+    transition: transform 0.3s, background 0.3s;
+    text-decoration: none;
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+.tool:hover {
+    transform: translateY(-5px) scale(1.05);
+    background: #444466;
+}
+.tool h3 { margin-bottom: 10px; font-size: 16px; }
+.tool p { font-size: 12px; }
 </style>
 </head>
 <body>
 
-<!-- LOGOWANIE -->
+<!-- EKRAN LOGOWANIA -->
 <div id="login-screen">
-    <h2>Wprowadź hasło, aby uzyskać dostęp do Hub2</h2>
-    <input type="password" id="password-input" placeholder="Hasło">
+    <input type="password" id="password-input" placeholder="Wpisz hasło">
     <button onclick="checkPassword()">Zaloguj</button>
 </div>
 
-<!-- INTRO -->
-<div id="intro">
-    <h1>D</h1>
-    <p id="concept-text">OpenGL</p>
+<!-- INTRO / LOADER -->
+<div id="loader">
+    <h1><span style="color:#1e90ff;">D</span> – Project Stargish</h1>
+    <div id="concepts"></div>
 </div>
 
 <!-- HUB -->
 <div id="hub">
-    <h1>Hub2 – Project Starfish</h1>
+    <h1>Hub2 – Project Stargish</h1>
+
+    <!-- 🌐 Internet & Sieć -->
+    <h2 class="category">Internet & Sieć</h2>
     <div class="hub-grid">
-        <!-- Tutaj w części 2 wkleimy 100 stron diagnostycznych --><!-- 🌐 Internet & Sieć -->
-        <a class="tool" href="https://www.speedtest.net/" target="_blank"><h2>Speedtest</h2><p>Pomiar prędkości internetu</p></a>
-        <a class="tool" href="https://fast.com/" target="_blank"><h2>Fast.com</h2><p>Test prędkości Netflix</p></a>
-        <a class="tool" href="https://www.ping-test.net/" target="_blank"><h2>Ping Test</h2><p>Sprawdź opóźnienia sieci</p></a>
-        <a class="tool" href="https://www.dnsleaktest.com/" target="_blank"><h2>DNS Leak Test</h2><p>Test wycieków DNS</p></a>
-        <a class="tool" href="https://ipleak.net/" target="_blank"><h2>IP Leak Test</h2><p>Sprawdź wyciek adresu IP</p></a>
-        <a class="tool" href="https://whatismyipaddress.com/" target="_blank"><h2>What Is My IP</h2><p>Adres IP i lokalizacja</p></a>
-        <a class="tool" href="https://www.yougetsignal.com/tools/open-ports/" target="_blank"><h2>Open Ports</h2><p>Sprawdzenie otwartych portów</p></a>
-        <a class="tool" href="https://test-ipv6.com/" target="_blank"><h2>IPv6 Test</h2><p>Test obsługi IPv6</p></a>
-        <a class="tool" href="https://www.measurementlab.net/tests/" target="_blank"><h2>M-Lab Tests</h2><p>Różne testy sieciowe</p></a>
-        <a class="tool" href="https://ping.canbeuseful.com/" target="_blank"><h2>Ping Tool</h2><p>Test pinga online</p></a>
+        <a class="tool" href="https://www.speedtest.net/" target="_blank"><h3>Speedtest</h3><p>Pomiar prędkości internetu</p></a>
+        <a class="tool" href="https://fast.com/" target="_blank"><h3>Fast.com</h3><p>Test prędkości Netflix</p></a>
+        <a class="tool" href="https://ping-test.net/" target="_blank"><h3>Ping Test</h3><p>Opóźnienia sieci</p></a>
+        <a class="tool" href="https://www.whatismybrowser.com/" target="_blank"><h3>Browser Info</h3><p>Szczegóły przeglądarki</p></a>
+        <a class="tool" href="https://www.deviceinfo.me/" target="_blank"><h3>Device Info</h3><p>Informacje o urządzeniu</p></a>
+        <a class="tool" href="https://www.webpagetest.org/" target="_blank"><h3>WebPageTest</h3><p>Test wydajności strony</p></a>
+        <a class="tool" href="https://gtmetrix.com/" target="_blank"><h3>GTmetrix</h3><p>Analiza prędkości strony</p></a>
+        <a class="tool" href="https://tools.pingdom.com/" target="_blank"><h3>Pingdom</h3><p>Analiza wydajności strony</p></a>
+        <a class="tool" href="https://www.pingdom.com/tools/" target="_blank"><h3>Pingdom Tools</h3><p>Diagnostyka strony</p></a>
+        <a class="tool" href="https://www.freetools.cloud/" target="_blank"><h3>Free Web Tools</h3><p>Różne narzędzia online</p></a>
+    </div>
 
-        <!-- 🔊 Audio & Wideo -->
-        <a class="tool" href="https://www.onlinemictest.com/" target="_blank"><h2>Mic Test</h2><p>Sprawdź mikrofon</p></a>
-        <a class="tool" href="https://www.speaker-test.com/" target="_blank"><h2>Speaker Test</h2><p>Test głośników</p></a>
-        <a class="tool" href="https://www.onlinemictest.com/webcam-test/" target="_blank"><h2>Webcam Test</h2><p>Podgląd kamery</p></a>
-        <a class="tool" href="https://webcammictest.com/" target="_blank"><h2>Webcam & Mic</h2><p>Test audio i kamery</p></a>
-        <a class="tool" href="https://www.onlinemictest.com/soundcard-test/" target="_blank"><h2>Soundcard Test</h2><p>Diagnostyka audio</p></a>
-        <a class="tool" href="https://www.browserleaks.com/audio" target="_blank"><h2>Browser Audio</h2><p>Test audio w przeglądarce</p></a>
-        <a class="tool" href="https://cam-recorder.com/" target="_blank"><h2>Cam Recorder</h2><p>Nagrywanie z kamery</p></a>
-        <a class="tool" href="https://www.testmyspeakers.com/" target="_blank"><h2>Test Speakers</h2><p>Sprawdź głośniki</p></a>
-        <a class="tool" href="https://www.webrtc-experiment.com/DetectRTC/" target="_blank"><h2>DetectRTC</h2><p>Diagnostyka audio/video</p></a>
-        <a class="tool" href="https://www.onlinemictest.com/mic-test/" target="_blank"><h2>Mic Check</h2><p>Prosty test mikrofonu</p></a>
+    <!-- 🔊 Audio & Wideo -->
+    <h2 class="category">Audio & Wideo</h2>
+    <div class="hub-grid">
+        <a class="tool" href="https://www.onlinemictest.com/" target="_blank"><h3>Mic Test</h3><p>Sprawdź mikrofon</p></a>
+        <a class="tool" href="https://www.speaker-test.com/" target="_blank"><h3>Speaker Test</h3><p>Test głośników</p></a>
+        <a class="tool" href="https://www.onlinemictest.com/soundcard-test/" target="_blank"><h3>Soundcard Test</h3><p>Diagnostyka audio</p></a>
+        <a class="tool" href="https://html5test.com/performance.html" target="_blank"><h3>HTML5 Performance</h3><p>Test wydajności HTML5</p></a>
+        <a class="tool" href="https://webglstats.com/" target="_blank"><h3>WebGL Stats</h3><p>Informacje o WebGL i GPU</p></a>
+    </div>
 
-        <!-- 💻 Sprzęt & Przeglądarka -->
-        <a class="tool" href="https://www.deviceinfo.me/" target="_blank"><h2>Device Info</h2><p>Informacje o urządzeniu</p></a>
-        <a class="tool" href="https://www.whatismybrowser.com/" target="_blank"><h2>Browser Info</h2><p>Szczegóły przeglądarki</p></a>
-        <a class="tool" href="https://browserleaks.com/" target="_blank"><h2>BrowserLeaks</h2><p>Testy prywatności</p></a>
-        <a class="tool" href="https://amiunique.org/" target="_blank"><h2>Am I Unique</h2><p>Unikalność fingerprintu</p></a>
-        <a class="tool" href="https://panopticlick.eff.org/" target="_blank"><h2>Panopticlick</h2><p>Śledzenie w sieci</p></a>
-        <a class="tool" href="https://www.useragentstring.com/" target="_blank"><h2>User Agent</h2><p>Test UA przeglądarki</p></a>
-        <a class="tool" href="https://tools.keycdn.com/http2-test" target="_blank"><h2>HTTP/2 Test</h2><p>Obsługa HTTP/2</p></a>
-        <a class="tool" href="https://tools.keycdn.com/http3-test" target="_blank"><h2>HTTP/3 Test</h2><p>Obsługa HTTP/3</p></a>
-        <a class="tool" href="https://caniuse.com/" target="_blank"><h2>Can I Use</h2><p>Obsługa funkcji web</p></a>
-        <a class="tool" href="https://html5test.com/" target="_blank"><h2>HTML5 Test</h2><p>Test zgodności HTML5</p></a>
+<!-- część 2 – dalsze kategorie i pozostałe narzędzia --><!-- 💻 Sprzęt & Przeglądarka -->
+    <h2 class="category">Sprzęt & Przeglądarka</h2>
+    <div class="hub-grid">
+        <a class="tool" href="https://browserleaks.com/" target="_blank"><h3>BrowserLeaks</h3><p>Test zabezpieczeń przeglądarki</p></a>
+        <a class="tool" href="https://webglreport.com/" target="_blank"><h3>WebGL Report</h3><p>Informacje o WebGL i GPU</p></a>
+        <a class="tool" href="https://caniuse.com/" target="_blank"><h3>Can I Use</h3><p>Sprawdzenie obsługi HTML/CSS/JS</p></a>
+        <a class="tool" href="https://html5test.com/" target="_blank"><h3>HTML5 Test</h3><p>Sprawdzenie zgodności przeglądarki</p></a>
+        <a class="tool" href="https://css3test.com/" target="_blank"><h3>CSS3 Test</h3><p>Test wsparcia CSS3</p></a>
+        <a class="tool" href="https://caniuse.com/css-grid" target="_blank"><h3>CSS Grid Support</h3><p>Sprawdzenie wsparcia CSS Grid</p></a>
+        <a class="tool" href="https://caniuse.com/css-flexbox" target="_blank"><h3>Flexbox Test</h3><p>Sprawdzenie wsparcia Flexbox</p></a>
+    </div>
 
-        <!-- 🎨 Grafika & WebGL -->
-        <a class="tool" href="https://webglreport.com/" target="_blank"><h2>WebGL Report</h2><p>Info o GPU i WebGL</p></a>
-        <a class="tool" href="https://webglsamples.org/" target="_blank"><h2>WebGL Samples</h2><p>Przykłady WebGL</p></a>
-        <a class="tool" href="https://threejs.org/examples/" target="_blank"><h2>Three.js</h2><p>3D w przeglądarce</p></a>
-        <a class="tool" href="https://www.browserleaks.com/webgl" target="_blank"><h2>WebGL Leak</h2><p>Test WebGL</p></a>
-        <a class="tool" href="https://webglstats.com/" target="_blank"><h2>WebGL Stats</h2><p>Dane o GPU/WebGL</p></a>
-        <a class="tool" href="https://www.canis.io/tools/webgl-test/" target="_blank"><h2>WebGL Debug</h2><p>Debugowanie WebGL</p></a>
-        <a class="tool" href="https://canvas-test.com/" target="_blank"><h2>Canvas Test</h2><p>Test Canvas</p></a>
-        <a class="tool" href="https://browserleaks.com/canvas" target="_blank"><h2>Canvas Fingerprint</h2><p>Canvas GPU test</p></a>
-        <a class="tool" href="https://jsfiddle.net/" target="_blank"><h2>JSFiddle</h2><p>Kod HTML/JS/CSS</p></a>
-        <a class="tool" href="https://codepen.io/" target="_blank"><h2>CodePen</h2><p>Edytor online</p></a>
+    <!-- 🔐 Bezpieczeństwo -->
+    <h2 class="category">Bezpieczeństwo</h2>
+    <div class="hub-grid">
+        <a class="tool" href="https://shodan.io/" target="_blank"><h3>Shodan</h3><p>Wyszukiwanie urządzeń w sieci</p></a>
+        <a class="tool" href="https://censys.io/" target="_blank"><h3>Censys</h3><p>Analiza i wyszukiwanie hostów</p></a>
+        <a class="tool" href="https://www.exploit-db.com/" target="_blank"><h3>Exploit DB</h3><p>Baza exploitów i podatności</p></a>
+        <a class="tool" href="https://www.cvedetails.com/" target="_blank"><h3>CVE Details</h3><p>Informacje o podatnościach</p></a>
+        <a class="tool" href="https://www.sslshopper.com/" target="_blank"><h3>SSL Checker</h3><p>Sprawdź certyfikaty SSL</p></a>
+        <a class="tool" href="https://securityheaders.com/" target="_blank"><h3>Security Headers</h3><p>Sprawdzenie nagłówków HTTP</p></a>
+        <a class="tool" href="https://www.talosintelligence.com/reputation_center" target="_blank"><h3>Talos Intelligence</h3><p>Ocena reputacji domen</p></a>
+    </div>
 
-        <!-- 🔐 Bezpieczeństwo -->
-        <a class="tool" href="https://www.ssllabs.com/ssltest/" target="_blank"><h2>SSL Labs</h2><p>Test certyfikatu SSL</p></a>
-        <a class="tool" href="https://securityheaders.com/" target="_blank"><h2>Security Headers</h2><p>HTTP headers</p></a>
-        <a class="tool" href="https://observatory.mozilla.org/" target="_blank"><h2>Mozilla Observatory</h2><p>Test zabezpieczeń</p></a>
-        <a class="tool" href="https://www.virustotal.com/" target="_blank"><h2>VirusTotal</h2><p>Skan plików/URL</p></a>
-        <a class="tool" href="https://urlscan.io/" target="_blank"><h2>URLScan</h2><p>Skanowanie stron</p></a>
-        <a class="tool" href="https://haveibeenpwned.com/" target="_blank"><h2>Have I Been Pwned</h2><p>Wycieki haseł</p></a>
-        <a class="tool" href="https://shodan.io/" target="_blank"><h2>Shodan</h2><p>Wyszukiwanie urządzeń w sieci</p></a>
-        <a class="tool" href="https://censys.io/" target="_blank"><h2>Censys</h2><p>Analiza i wyszukiwanie hostów</p></a>
-        <a class="tool" href="https://pentest-tools.com/information-gathering" target="_blank"><h2>Pentest Info Gathering</h2><p>Testy bezpieczeństwa online</p></a>
-        <a class="tool" href="https://www.exploit-db.com/" target="_blank"><h2>Exploit DB</h2><p>Baza exploitów i podatności</p></a>
-        <a class="tool" href="https://www.cvedetails.com/" target="_blank"><h2>CVE Details</h2><p>Informacje o podatnościach</p></a>
-        <a class="tool" href="https://www.sslshopper.com/" target="_blank"><h2>SSL Checker</h2><p>Sprawdź certyfikaty SSL</p></a>
-        <a class="tool" href="https://www.geocaching.com/play" target="_blank"><h2>Geolocation Test</h2><p>Sprawdzenie geolokalizacji</p></a>
-        <a class="tool" href="https://www.whatismybrowser.com/detect/what-is-my-browser" target="_blank"><h2>Browser Detect</h2><p>Informacje o przeglądarce</p></a>
-        <a class="tool" href="https://www.ghostery.com/" target="_blank"><h2>Ghostery</h2><p>Sprawdzenie trackerów</p></a>
-        <a class="tool" href="https://www.talosintelligence.com/reputation_center" target="_blank"><h2>Talos Intelligence</h2><p>Ocena reputacji domen</p></a>
+    <!-- 🛠️ Programowanie -->
+    <h2 class="category">Programowanie</h2>
+    <div class="hub-grid">
+        <a class="tool" href="https://jsfiddle.net/" target="_blank"><h3>JSFiddle</h3><p>Test HTML/CSS/JS online</p></a>
+        <a class="tool" href="https://codepen.io/" target="_blank"><h3>CodePen</h3><p>Edytor online HTML/CSS/JS</p></a>
+        <a class="tool" href="https://playcode.io/" target="_blank"><h3>PlayCode</h3><p>Edytor online JS</p></a>
+        <a class="tool" href="https://validator.w3.org/" target="_blank"><h3>HTML Validator</h3><p>Sprawdź poprawność kodu HTML</p></a>
+        <a class="tool" href="https://jigsaw.w3.org/css-validator/" target="_blank"><h3>CSS Validator</h3><p>Sprawdź poprawność CSS</p></a>
+        <a class="tool" href="https://jshint.com/" target="_blank"><h3>JS Lint</h3><p>Sprawdzenie poprawności JS</p></a>
+        <a class="tool" href="https://www.debuggex.com/" target="_blank"><h3>Regex Tester</h3><p>Testowanie wyrażeń regularnych</p></a>
+        <a class="tool" href="https://www.toptal.com/developers/cssref" target="_blank"><h3>CSS Reference</h3><p>Sprawdzenie właściwości CSS</p></a>
+        <a class="tool" href="https://jsperf.com/" target="_blank"><h3>JS Performance</h3><p>Test wydajności JavaScript</p></a>
+        <a class="tool" href="https://browserling.com/tools" target="_blank"><h3>Browserling Tools</h3><p>Różne testy przeglądarek online</p></a>
+        <a class="tool" href="https://www.rapidtables.com/tools/" target="_blank"><h3>Online Web Tools</h3><p>HTML/CSS/JS narzędzia online</p></a>
+    </div>
 
-        <!-- 🛠️ Narzędzia programistyczne -->
-        <a class="tool" href="https://jsfiddle.net/" target="_blank"><h2>JSFiddle</h2><p>Test HTML/CSS/JS online</p></a>
-        <a class="tool" href="https://codepen.io/" target="_blank"><h2>CodePen</h2><p>Edytor online HTML/CSS/JS</p></a>
-        <a class="tool" href="https://playcode.io/" target="_blank"><h2>PlayCode</h2><p>Edytor online JS</p></a>
-        <a class="tool" href="https://validator.w3.org/" target="_blank"><h2>HTML Validator</h2><p>Sprawdź poprawność kodu HTML</p></a>
-        <a class="tool" href="https://jigsaw.w3.org/css-validator/" target="_blank"><h2>CSS Validator</h2><p>Sprawdź poprawność CSS</p></a>
-        <a class="tool" href="https://jshint.com/" target="_blank"><h2>JS Lint</h2><p>Sprawdź poprawność JS</p></a>
-        <a class="tool" href="https://www.debuggex.com/" target="_blank"><h2>Regex Tester</h2><p>Testowanie wyrażeń regularnych</p></a>
-        <a class="tool" href="https://www.toptal.com/developers/cssref" target="_blank"><h2>CSS Reference</h2><p>Sprawdzenie właściwości CSS</p></a>
-        <a class="tool" href="https://jsperf.com/" target="_blank"><h2>JS Performance</h2><p>Test wydajności JavaScript</p></a>
-        <a class="tool" href="https://browserling.com/tools" target="_blank"><h2>Browserling Tools</h2><p>Różne testy przeglądarek online</p></a>
-
-        <!-- 📱 Responsywność & Testy urządzeń -->
-        <a class="tool" href="https://responsivetesttool.com/" target="_blank"><h2>Responsive Test</h2><p>Sprawdzenie responsywności</p></a>
-        <a class="tool" href="https://www.browserstack.com/" target="_blank"><h2>BrowserStack</h2><p>Testy na różnych urządzeniach</p></a>
-        <a class="tool" href="https://browsershots.org/" target="_blank"><h2>Browser Screenshots</h2><p>Jak strona wygląda w innych przeglądarkach</p></a>
-        <a class="tool" href="https://www.webpagetest.org/" target="_blank"><h2>WebPageTest</h2><p>Test wydajności strony</p></a>
-        <a class="tool" href="https://gtmetrix.com/" target="_blank"><h2>GTmetrix</h2><p>Analiza prędkości strony</p></a>
-        <a class="tool" href="https://www.pingdom.com/tools/" target="_blank"><h2>Pingdom</h2><p>Analiza wydajności</p></a>
-        <a class="tool" href="https://tools.pingdom.com/" target="_blank"><h2>Pingdom Tools</h2><p>Diagnostyka strony i wydajność</p></a>
-        <a class="tool" href="https://www.freetools.cloud/" target="_blank"><h2>Free Web Tools</h2><p>Różne narzędzia online</p></a>
-        <a class="tool" href="https://www.canis.io/tools/html5-test" target="_blank"><h2>HTML5 Test 2</h2><p>Diagnostyka HTML5</p></a>
-        <a class="tool" href="https://html5test.com/performance.html" target="_blank"><h2>HTML5 Performance 3</h2><p>Test wydajności HTML5</p></a>
-
-        <!-- 🖌️ Kolory i grafika -->
-        <a class="tool" href="https://www.colorhexa.com/" target="_blank"><h2>Color Picker</h2><p>Test kolorów i gradientów online</p></a>
-        <a class="tool" href="https://coolors.co/" target="_blank"><h2>Coolors</h2><p>Generowanie palet kolorów</p></a>
-        <a class="tool" href="https://material.io/resources/color/" target="_blank"><h2>Material Color Tool</h2><p>Palety kolorów Material Design</p></a>
-        <a class="tool" href="https://www.gradientmagic.com/" target="_blank"><h2>Gradient Magic</h2><p>Tworzenie gradientów online</p></a>
-        <a class="tool" href="https://flatuicolors.com/" target="_blank"><h2>Flat UI Colors</h2><p>Palety Flat Design</p></a>
-
-    </div> <!-- koniec hub-grid -->
+    <!-- 🖌️ Kolory & Grafika -->
+    <h2 class="category">Kolory & Grafika</h2>
+    <div class="hub-grid">
+        <a class="tool" href="https://www.colorhexa.com/" target="_blank"><h3>Color Picker</h3><p>Test kolorów i gradientów online</p></a>
+        <a class="tool" href="https://coolors.co/" target="_blank"><h3>Coolors</h3><p>Generowanie palet kolorów</p></a>
+        <a class="tool" href="https://material.io/resources/color/" target="_blank"><h3>Material Color Tool</h3><p>Palety kolorów Material Design</p></a>
+        <a class="tool" href="https://www.gradientmagic.com/" target="_blank"><h3>Gradient Magic</h3><p>Tworzenie gradientów online</p></a>
+        <a class="tool" href="https://flatuicolors.com/" target="_blank"><h3>Flat UI Colors</h3><p>Palety Flat Design</p></a>
+    </div>
 </div> <!-- koniec hub -->
 
 <script>
-    const CORRECT_PASSWORD = "3301"; // <-- tutaj wpisz swoje hasło
+// HASŁO DO STRONY
+const PASSWORD = "3301";
 
-    function checkPassword() {
-        const input = document.getElementById("password-input").value;
-        if(input === CORRECT_PASSWORD) {
-            // Ukryj ekran logowania
-            document.getElementById("login-screen").style.display = "none";
-
-            // Pokaż intro
-            const intro = document.getElementById("intro");
-            intro.style.opacity = 1;
-
-            // Animacja pojęć
-            const concepts = [
-                "OpenGL", "GPU", "Canvas", "WebGL", "Shader", "Rasteryzacja",
-                "Renderowanie", "VRAM", "Frame Rate", "Antialiasing",
-                "Texture Mapping", "Vertex Buffer", "HTML5", "CSS3",
-                "Flexbox", "Grid", "JavaScript", "WebAssembly", "DOM", "Canvas2D"
-            ];
-            let i = 0;
-            const conceptText = document.getElementById("concept-text");
-            const interval = setInterval(() => {
-                conceptText.textContent = concepts[i % concepts.length];
-                i++;
-            }, 200);
-
-            // Po 10 sekundach intro znika i pokazuje się Hub
-            setTimeout(() => {
-                intro.style.display = "none";
-                clearInterval(interval);
-                document.getElementById("hub").style.display = "flex";
-                document.body.style.overflow = "auto";
-            }, 10000);
-
-        } else {
-            alert("Niepoprawne hasło. Spróbuj ponownie.");
-        }
+function checkPassword() {
+    const input = document.getElementById("password-input").value;
+    if(input === PASSWORD) {
+        document.getElementById("login-screen").style.display = "none";
+        document.getElementById("loader").style.opacity = 1;
+        startConceptsAnimation();
+        setTimeout(() => {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("hub").style.display = "block";
+            document.body.style.overflow = 'auto';
+        }, 10000); // 10 sekund animacji
+    } else {
+        alert("Niepoprawne hasło!");
     }
+}
 
-    // Opcjonalnie: Enter też zatwierdza hasło
-    document.getElementById("password-input").addEventListener("keypress", function(e) {
-        if(e.key === "Enter") checkPassword();
-    });
+// Animacja pojęć technicznych
+const concepts = [
+    "OpenGL","GPU","Canvas","WebGL","Shader","Rasteryzacja","Renderowanie",
+    "VRAM","Frame Rate","Antialiasing","Texture Mapping","Vertex Buffer",
+    "HTML5","CSS3","Flexbox","Grid","JavaScript","WebAssembly","DOM","Canvas2D"
+];
+let i = 0;
+function startConceptsAnimation() {
+    const conceptDiv = document.getElementById("concepts");
+    const interval = setInterval(() => {
+        conceptDiv.textContent = concepts[i % concepts.length];
+        i++;
+    }, 200);
+}
 </script>
 
 </body>
-</html> 
+</html>
