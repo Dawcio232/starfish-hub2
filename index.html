@@ -199,7 +199,6 @@ body, html {
         <a class="tool" href="https://flatuicolors.com/" target="_blank"><h3>Flat UI Colors</h3><p>Palety Flat Design</p></a>
     </div>
 </div> <!-- koniec hub -->
-
 <script>
 // HASŁO DO STRONY
 const PASSWORD = "3301";
@@ -213,6 +212,7 @@ const concepts = [
 let conceptIndex = 0;
 let conceptInterval;
 
+// Funkcja uruchamia animację
 function startConceptsAnimation() {
     const conceptDiv = document.getElementById("concepts");
     conceptInterval = setInterval(() => {
@@ -245,12 +245,13 @@ function checkPassword() {
     }
 }
 
-// Upewnij się, że zdarzenia działają po załadowaniu DOM
+// Podpinanie zdarzeń po załadowaniu DOM
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector("#login-screen button").addEventListener("click", checkPassword);
-    
-    // pozwala też zalogować przez Enter
-    document.querySelector("#password-input").addEventListener("keypress", (e) => {
+    const loginButton = document.querySelector("#login-screen button");
+    const passwordInput = document.querySelector("#password-input");
+
+    loginButton.addEventListener("click", checkPassword);
+    passwordInput.addEventListener("keypress", (e) => {
         if(e.key === "Enter") checkPassword();
     });
 });
