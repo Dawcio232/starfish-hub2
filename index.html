@@ -29,8 +29,7 @@ body, html {
 #loader h1 {
     font-size: 120px;
     font-weight: bold;
-    color: #00bfff; /* niebieska litera D */
-    animation: pulse 1s infinite alternate;
+    animation: pulse 1s infinite alternate, colorChange 3s infinite alternate;
 }
 
 @keyframes pulse {
@@ -39,11 +38,17 @@ body, html {
     100% { transform: scale(1); }
 }
 
+@keyframes colorChange {
+    0% { color: #00bfff; }
+    50% { color: #ff99ff; }
+    100% { color: #00bfff; }
+}
+
 #concepts {
     margin-top: 30px;
     font-size: 24px;
     text-align: center;
-    color: #ff99ff; /* różowo-niebieski akcent */
+    animation: colorChange 4s infinite alternate;
 }
 
 /* HUB */
@@ -61,52 +66,7 @@ body, html {
 }
 
 /* Kategorie */
-.category {
-    font-size: 24px;
-    margin: 30px 0 10px 10px;
-    color: #ff99ff; /* różowo-niebieski akcent */
-}
-
-/* Przyciski narzędzi */
-.hub-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    margin-bottom: 40px;
-}
-
-.tool {
-    background: linear-gradient(135deg, #00bfff, #ff99ff);
-    padding: 20px;
-    text-align: center;
-    border-radius: 12px;
-    transition: transform 0.3s, box-shadow 0.3s;
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-}
-
-.tool:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.5);
-}
-</style>
-</head>
-<body>
-
-<!-- LOADER / ANIMACJA -->
-<div id="loader">
-    <h1>D</h1>
-    <div id="concepts"></div>
-</div>
-
-<!-- HUB -->
-<div id="hub">
-    <h1>Hub2 – Project Stargish</h1>
-    <!-- Kategorie i przyciski narzędzi będą wstawione w drugiej części -->
-
-    <!-- 🌐 Internet & Sieć -->
+<!-- 🌐 Internet & Sieć -->
     <h2 class="category">Internet & Sieć</h2>
     <div class="hub-grid">
         <a class="tool" href="https://www.speedtest.net/" target="_blank"><h3>Speedtest</h3><p>Pomiar prędkości internetu</p></a>
@@ -180,9 +140,62 @@ body, html {
         <a class="tool" href="https://www.gradientmagic.com/" target="_blank"><h3>Gradient Magic</h3><p>Tworzenie gradientów online</p></a>
         <a class="tool" href="https://flatuicolors.com/" target="_blank"><h3>Flat UI Colors</h3><p>Palety Flat Design</p></a>
     </div>
-</div> <!-- koniec hub -->
+.category {
+    font-size: 24px;
+    margin: 30px 0 10px 10px;
+    color: #ff99ff; /* różowo-niebieski akcent */
+}
+
+/* Przyciski narzędzi */
+.hub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.tool {
+    background: linear-gradient(135deg, #00bfff, #ff99ff);
+    padding: 20px;
+    text-align: center;
+    border-radius: 12px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.tool:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER / ANIMACJA -->
+<div id="loader">
+    <h1>D</h1>
+    <div id="concepts"></div>
+</div>
+
+<!-- HUB -->
+<div id="hub">
+    <h1>Hub2 – Project Stargish</h1>
+    <!-- Kategorie -->
+    <div class="category">Audio</div>
+    <div class="hub-grid" id="audio-tools"></div>
+
+    <div class="category">Sieć</div>
+    <div class="hub-grid" id="network-tools"></div>
+
+    <div class="category">Web</div>
+    <div class="hub-grid" id="web-tools"></div>
+</div>
+
 <script>
-// Animacja pojęć technicznych
+// Pojęcia techniczne
 const concepts = [
     "OpenGL","GPU","Canvas","WebGL","Shader","Rasteryzacja","Renderowanie",
     "VRAM","Frame Rate","Antialiasing","Texture Mapping","Vertex Buffer",
@@ -190,14 +203,13 @@ const concepts = [
 ];
 
 let conceptIndex = 0;
-
 const conceptDiv = document.getElementById("concepts");
 const interval = setInterval(() => {
     conceptDiv.textContent = concepts[conceptIndex % concepts.length];
     conceptIndex++;
 }, 200);
 
-// Po 10 sekundach pokazujemy hub
+// Po 10 sekundach pokazujemy hub i kończymy animację
 setTimeout(() => {
     document.getElementById("loader").style.display = "none";
     document.getElementById("hub").style.display = "block";
