@@ -3,271 +3,243 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Starfish - Hub2</title>
+<title>Hub2 - Project Starfish</title>
 <style>
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    height: 100%;
-    background: linear-gradient(135deg, #1e1e2f, #0d0d1a);
-    color: #fff;
-    overflow: hidden;
-}
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        height: 100%;
+        background: #1e1e2f;
+        color: #fff;
+        overflow: hidden;
+    }
 
-/* EKRAN KODU */
-#code-screen {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #1e1e2f;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 300;
-}
+    /* EKRAN KODU DIAGNOSTYCZNEGO */
+    #code-screen {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #1e1e2f;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 48px;
+        font-weight: bold;
+        color: #00ff00;
+        animation: blink 1s infinite;
+        z-index: 300;
+    }
+    @keyframes blink {
+        0%, 50%, 100% { opacity: 1; }
+        25%, 75% { opacity: 0; }
+    }
 
-#code-screen input {
-    font-size: 24px;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    margin-top: 20px;
-    text-align: center;
-    background: #1e1e2f;
-    color: #ff66cc;
-    border: 2px solid #66ccff;
-}
+    /* INTRO */
+    #intro {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #1e1e2f;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 250;
+        opacity: 0;
+        animation: fadeInOut 6s ease forwards;
+        animation-delay: 3s; /* po kodzie */
+    }
+    #intro h1 {
+        font-size: 100px;
+        font-weight: bold;
+        color: #ff6600;
+        animation: pulse 1s infinite alternate;
+    }
+    #intro p {
+        margin-top: 20px;
+        font-size: 28px;
+        color: #ffcc00;
+        animation: fadeText 2s ease-in-out infinite alternate;
+    }
+    @keyframes pulse {
+        0% { transform: scale(1); color: #ff6600; }
+        100% { transform: scale(1.2); color: #ffcc00; }
+    }
+    @keyframes fadeText {
+        from { opacity: 0.5; }
+        to { opacity: 1; }
+    }
+    @keyframes fadeInOut {
+        0% { opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { opacity: 0; }
+    }
 
-#code-screen button {
-    font-size: 20px;
-    margin-top: 15px;
-    padding: 8px 20px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    background: linear-gradient(45deg, #ff66cc, #66ccff);
-    color: #fff;
-    font-weight: bold;
-}
+    /* HUB */
+    #hub {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+    #hub h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        animation: fadeIn 2s ease-in-out;
+    }
+    @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
 
-#error-msg {
-    color: #ff66cc;
-    margin-top: 10px;
-}
-
-/* LOADER */
-#loader {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #1e1e2f, #0d0d1a);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 200;
-}
-
-#letterD {
-    font-size: 120px;
-    font-weight: bold;
-    background: linear-gradient(45deg, #ff66cc, #66ccff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: pulse 1s infinite alternate;
-    cursor: pointer;
-    position: relative;
-    transition: all 3s ease;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
-#concepts {
-    margin-top: 30px;
-    font-size: 24px;
-    animation: fadeInOut 20s linear forwards;
-    text-align: center;
-    background: linear-gradient(45deg, #ff66cc, #66ccff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* HUB */
-#hub {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    opacity: 0;
-    transition: opacity 3s ease;
-}
-
-#hub.show {
-    display: flex;
-    opacity: 1;
-}
-
-#hub h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    background: linear-gradient(45deg, #ff66cc, #66ccff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.hub-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px;
-    width: 100%;
-    max-width: 1400px;
-}
-
-.tool {
-    background: #2c2c44;
-    padding: 20px;
-    text-align: center;
-    border-radius: 12px;
-    transition: transform 0.3s, background 0.3s;
-    text-decoration: none;
-    color: #fff;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-}
-
-.tool:hover {
-    transform: translateY(-5px) scale(1.05);
-    background: linear-gradient(45deg, #ff66cc, #66ccff);
-}
-
-.tool h2 {
-    margin-bottom: 10px;
-    font-size: 14px;
-}
-
-.tool p {
-    font-size: 11px;
-}
+    .hub-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        width: 100%;
+        max-width: 1400px;
+    }
+    .tool {
+        background: #2c2c44;
+        padding: 20px;
+        text-align: center;
+        border-radius: 12px;
+        transition: transform 0.3s, background 0.3s;
+        text-decoration: none;
+        color: #fff;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+    .tool:hover {
+        transform: translateY(-5px) scale(1.05);
+        background: #444466;
+    }
+    .tool h2 {
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+    .tool p {
+        font-size: 12px;
+    }
 </style>
 </head>
 <body>
 
-<!-- KOD DIAGNOSTYCZNY -->
-<div id="code-screen">
-    <div>Wpisz kod diagnostyczny:</div>
-    <input type="password" id="code-input" placeholder="****">
-    <button onclick="checkCode()">OK</button>
-    <div id="error-msg"></div>
-</div>
+<!-- EKRAN STARTOWY -->
+<div id="code-screen">KOD DIAGNOSTYCZNY: 3301</div>
 
-<!-- LOADER -->
-<div id="loader">
-    <h1 id="letterD">D</h1>
-    <div id="concepts"></div>
+<!-- INTRO -->
+<div id="intro">
+    <h1>D</h1>
+    <p>Witamy w Hub2 – Project Starfish</p>
 </div>
 
 <!-- HUB -->
 <div id="hub">
-    <h1>Mini Hub Diagnostyczny Online</h1>
+    <h1>Hub2 – Project Starfish (100 narzędzi diagnostycznych online)</h1>
     <div class="hub-grid">
-        <!-- Przykładowe 50 narzędzi -->
-        <a class="tool" href="https://www.onlinemictest.com/" target="_blank"><h2>Test mikrofonu</h2><p>Sprawdź mikrofon online.</p></a>
-        <a class="tool" href="https://www.speaker-test.com/" target="_blank"><h2>Test głośników</h2><p>Sprawdź dźwięk online.</p></a>
-        <a class="tool" href="https://www.speedtest.net/" target="_blank"><h2>Speedtest</h2><p>Test prędkości internetu.</p></a>
-        <a class="tool" href="https://fast.com/" target="_blank"><h2>Fast.com</h2><p>Szybki test internetu od Netflixa.</p></a>
-        <a class="tool" href="https://www.ping-test.net/" target="_blank"><h2>Ping Test</h2><p>Opóźnienia sieci.</p></a>
-        <a class="tool" href="https://webglsamples.org/" target="_blank"><h2>Test WebGL</h2><p>Test grafiki w przeglądarce.</p></a>
-        <a class="tool" href="https://browserleaks.com/canvas" target="_blank"><h2>Canvas GPU</h2><p>Wydajność renderowania.</p></a>
-        <a class="tool" href="https://www.onlinemictest.com/soundcard-test/" target="_blank"><h2>Test karty dźwiękowej</h2><p>Diagnostyka audio.</p></a>
-        <a class="tool" href="https://html5test.com/" target="_blank"><h2>HTML5 Test</h2><p>Sprawdź zgodność przeglądarki z HTML5.</p></a>
-        <a class="tool" href="https://www.cssgridgenerator.com/" target="_blank"><h2>CSS Grid Test</h2><p>Test układów CSS.</p></a>
-        <a class="tool" href="https://www.canis.io/tools/webgl-test/" target="_blank"><h2>WebGL Debug</h2><p>Diagnostyka WebGL.</p></a>
-        <a class="tool" href="https://webglstats.com/" target="_blank"><h2>WebGL Stats</h2><p>Informacje o WebGL i GPU.</p></a>
-        <a class="tool" href="https://www.browserstack.com/" target="_blank"><h2>Test przeglądarek</h2><p>Test online różnych przeglądarek.</p></a>
-        <a class="tool" href="https://caniuse.com/" target="_blank"><h2>Can I use</h2><p>Sprawdzenie obsługi HTML/CSS/JS.</p></a>
-        <a class="tool" href="https://responsivetesttool.com/" target="_blank"><h2>Responsive Test</h2><p>Sprawdzenie responsywności stron.</p></a>
-        <a class="tool" href="https://www.pingdom.com/tools/" target="_blank"><h2>Pingdom</h2><p>Test wydajności strony.</p></a>
-        <a class="tool" href="https://gtmetrix.com/" target="_blank"><h2>GTmetrix</h2><p>Analiza prędkości strony.</p></a>
-        <a class="tool" href="https://jsfiddle.net/" target="_blank"><h2>JSFiddle</h2><p>Test i eksperymenty z JS/CSS/HTML.</p></a>
-        <a class="tool" href="https://codepen.io/" target="_blank"><h2>CodePen</h2><p>Test HTML/CSS/JS online.</p></a>
-        <a class="tool" href="https://playcode.io/" target="_blank"><h2>PlayCode</h2><p>Edytor online JS/HTML/CSS.</p></a>
-        <a class="tool" href="https://validator.w3.org/" target="_blank"><h2>HTML Validator</h2><p>Sprawdzenie poprawności kodu HTML.</p></a>
-        <a class="tool" href="https://jigsaw.w3.org/css-validator/" target="_blank"><h2>CSS Validator</h2><p>Sprawdzenie poprawności CSS.</p></a>
-        <a class="tool" href="https://jshint.com/" target="_blank"><h2>JS Lint</h2><p>Sprawdzenie poprawności JS.</p></a>
-        <a class="tool" href="https://www.browserleaks.com/audio" target="_blank"><h2>Audio Test</h2><p>Test audio w przeglądarce.</p></a>
-        <a class="tool" href="https://html5test.com/performance.html" target="_blank"><h2>HTML5 Performance</h2><p>Test wydajności HTML5.</p></a>
-        <a class="tool" href="https://www.deviceinfo.me/" target="_blank"><h2>Device Info</h2><p>Informacje o urządzeniu i przeglądarce.</p></a>
+        <!-- tutaj w części 2 dodamy wszystkie 100 linków --><!-- 🌐 Internet & Sieć -->
+        <a class="tool" href="https://www.speedtest.net/" target="_blank"><h2>Speedtest</h2><p>Pomiar prędkości internetu.</p></a>
+        <a class="tool" href="https://fast.com/" target="_blank"><h2>Fast.com</h2><p>Test prędkości Netflix.</p></a>
+        <a class="tool" href="https://www.ping-test.net/" target="_blank"><h2>Ping Test</h2><p>Sprawdź opóźnienia sieci.</p></a>
+        <a class="tool" href="https://www.dnsleaktest.com/" target="_blank"><h2>DNS Leak Test</h2><p>Test wycieków DNS.</p></a>
+        <a class="tool" href="https://ipleak.net/" target="_blank"><h2>IP Leak Test</h2><p>Sprawdź wyciek adresu IP.</p></a>
+        <a class="tool" href="https://whatismyipaddress.com/" target="_blank"><h2>What Is My IP</h2><p>Adres IP i lokalizacja.</p></a>
+        <a class="tool" href="https://www.yougetsignal.com/tools/open-ports/" target="_blank"><h2>Open Ports</h2><p>Sprawdzenie otwartych portów.</p></a>
+        <a class="tool" href="https://test-ipv6.com/" target="_blank"><h2>IPv6 Test</h2><p>Test obsługi IPv6.</p></a>
+        <a class="tool" href="https://www.measurementlab.net/tests/" target="_blank"><h2>M-Lab Tests</h2><p>Różne testy sieciowe.</p></a>
+        <a class="tool" href="https://ping.canbeuseful.com/" target="_blank"><h2>Ping Tool</h2><p>Test pinga online.</p></a>
+
+        <!-- 🔊 Audio & Wideo -->
+        <a class="tool" href="https://www.onlinemictest.com/" target="_blank"><h2>Mic Test</h2><p>Sprawdź mikrofon.</p></a>
+        <a class="tool" href="https://www.speaker-test.com/" target="_blank"><h2>Speaker Test</h2><p>Test głośników.</p></a>
+        <a class="tool" href="https://www.onlinemictest.com/webcam-test/" target="_blank"><h2>Webcam Test</h2><p>Podgląd kamery.</p></a>
+        <a class="tool" href="https://webcammictest.com/" target="_blank"><h2>Webcam & Mic</h2><p>Test audio i kamery.</p></a>
+        <a class="tool" href="https://www.onlinemictest.com/soundcard-test/" target="_blank"><h2>Soundcard Test</h2><p>Diagnostyka audio.</p></a>
+        <a class="tool" href="https://www.browserleaks.com/audio" target="_blank"><h2>Browser Audio</h2><p>Test audio w przeglądarce.</p></a>
+        <a class="tool" href="https://www.onlinemictest.com/mic-test/" target="_blank"><h2>Mic Check</h2><p>Prosty test mikrofonu.</p></a>
+        <a class="tool" href="https://cam-recorder.com/" target="_blank"><h2>Cam Recorder</h2><p>Nagrywanie z kamery.</p></a>
+        <a class="tool" href="https://www.testmyspeakers.com/" target="_blank"><h2>Test Speakers</h2><p>Sprawdź głośniki.</p></a>
+        <a class="tool" href="https://www.webrtc-experiment.com/DetectRTC/" target="_blank"><h2>DetectRTC</h2><p>Diagnostyka audio/video.</p></a>
+
+        <!-- 💻 Sprzęt & Przeglądarka -->
+        <a class="tool" href="https://www.deviceinfo.me/" target="_blank"><h2>Device Info</h2><p>Informacje o urządzeniu.</p></a>
         <a class="tool" href="https://www.whatismybrowser.com/" target="_blank"><h2>Browser Info</h2><p>Szczegóły przeglądarki.</p></a>
-        <a class="tool" href="https://www.webpagetest.org/" target="_blank"><h2>WebPageTest</h2><p>Test wydajności strony online.</p></a>
-        <a class="tool" href="https://www.keycdn.com/tools/ping" target="_blank"><h2>Ping Test CDN</h2><p>Sprawdź opóźnienia serwera.</p></a>
-        <a class="tool" href="https://tools.pingdom.com/" target="_blank"><h2>Pingdom Tools</h2><p>Diagnostyka strony i wydajność.</p></a>
-        <a class="tool" href="https://www.freetools.cloud/" target="_blank"><h2>HTML/CSS/JS Tools</h2><p>Różne narzędzia web.</p></a>
-        <a class="tool" href="https://www.debuggex.com/" target="_blank"><h2>Regex Tester</h2><p>Testowanie wyrażeń regularnych.</p></a>
-        <a class="tool" href="https://www.colorhexa.com/" target="_blank"><h2>Color Picker</h2><p>Test kolorów i gradientów online.</p></a>
-        <a class="tool" href="https://caniuse.com/#feat=webgl" target="_blank"><h2>WebGL Support</h2><p>Sprawdzenie wsparcia WebGL.</p></a>
-        <a class="tool" href="https://html5test.com/browser.html" target="_blank"><h2>HTML5 Browser Test</h2><p>Sprawdzenie HTML5 w przeglądarce.</p></a>
-        <a class="tool" href="https://browsershots.org/" target="_blank"><h2>Browser Screenshots</h2><p>Jak strona wygląda w innych przeglądarkach.</p></a>
-        <a class="tool" href="https://whatweb.net/" target="_blank"><h2>WhatWeb</h2><p>Sprawdzenie technologii na stronie.</p></a>
-        <a class="tool" href="https://tools.pingdom.com/" target="_blank"><h2>Site Performance</h2><p>Analiza strony pod kątem wydajności.</p></a>
-        <a class="tool" href="https://www.webpagetest.org/runtest.php" target="_blank"><h2>Advanced WebPageTest</h2><p>Szczegółowa diagnostyka strony.</p></a>
-        <a class="tool" href="https://validator.w3.org/nu/" target="_blank"><h2>HTML5 Validator</h2><p>Sprawdzenie poprawności HTML5.</p></a>
-        <a class="tool" href="https://caniuse.com/css-grid" target="_blank"><h2>CSS Grid Support</h2><p>Sprawdzenie wsparcia CSS Grid.</p></a>
-        <a class="tool" href="https://css3test.com/" target="_blank"><h2>CSS3 Test</h2><p>Test wsparcia CSS3.</p></a>
-        <a class="tool" href="https://caniuse.com/css-flexbox" target="_blank"><h2>Flexbox Test</h2><p>Sprawdzenie wsparcia Flexbox.</p></a>
-        <a class="tool" href="https://www.onlinemictest.com/mic-test/" target="_blank"><h2>Mic Test</h2><p>Prosty test mikrofonu.</p></a>
-        <a class="tool" href="https://html5test.com/performance.html" target="_blank"><h2>HTML5 Performance 2</h2><p>Sprawdzenie wydajności HTML5.</p></a>
-        <a class="tool" href="https://canvas-test.com/" target="_blank"><h2>Canvas Test</h2><p>Test renderowania HTML5 Canvas.</p></a>
-        <a class="tool" href="https://webglreport.com/" target="_blank"><h2>WebGL Report</h2><p>Informacje o WebGL i GPU.</p></a>
-        <a class="tool" href="https://threejs.org/examples/" target="_blank"><h2>Three.js Test</h2><p>Przykłady 3D w przeglądarce.</p></a>
-        <a class="tool" href="https://www.browserleaks.com/webgl" target="_blank"><h2>WebGL Leak Test</h2><p>Test zabezpieczeń WebGL.</p></a>
-        <a class="tool" href="https://www.toptal.com/developers/cssref" target="_blank"><h2>CSS Reference</h2><p>Sprawdzenie właściwości CSS online.</p></a>
-        <a class="tool" href="https://jsperf.com/" target="_blank"><h2>JS Performance Test</h2><p>Test wydajności JavaScript.</p></a>
-        <a class="tool" href="https://browserling.com/tools" target="_blank"><h2>Browserling Tools</h2><p>Różne testy przeglądarek online.</p></a>
-        <a class="tool" href="https://www.rapidtables.com/tools/" target="_blank"><h2>Online Web Tools</h2><p>HTML/CSS/JS narzędzia online.</p></a>
-        <a class="tool" href="https://html5test.com/performance.html" target="_blank"><h2>HTML5 Perf 3</h2><p>Test wydajności HTML5.</p></a>
-        <a class="tool" href="https://www.canis.io/tools/html5-test" target="_blank"><h2>HTML5 Test 2</h2><p>Sprawdzenie HTML5 w przeglądarce.</p></a>
+        <a class="tool" href="https://browserleaks.com/" target="_blank"><h2>BrowserLeaks</h2><p>Testy prywatności.</p></a>
+        <a class="tool" href="https://amiunique.org/" target="_blank"><h2>Am I Unique</h2><p>Unikalność fingerprintu.</p></a>
+        <a class="tool" href="https://panopticlick.eff.org/" target="_blank"><h2>Panopticlick</h2><p>Śledzenie w sieci.</p></a>
+        <a class="tool" href="https://www.useragentstring.com/" target="_blank"><h2>User Agent</h2><p>Test UA przeglądarki.</p></a>
+        <a class="tool" href="https://tools.keycdn.com/http2-test" target="_blank"><h2>HTTP/2 Test</h2><p>Obsługa HTTP/2.</p></a>
+        <a class="tool" href="https://tools.keycdn.com/http3-test" target="_blank"><h2>HTTP/3 Test</h2><p>Obsługa HTTP/3.</p></a>
+        <a class="tool" href="https://caniuse.com/" target="_blank"><h2>Can I Use</h2><p>Obsługa funkcji web.</p></a>
+        <a class="tool" href="https://html5test.com/" target="_blank"><h2>HTML5 Test</h2><p>Test zgodności HTML5.</p></a>
+
+        <!-- 🎨 Grafika & WebGL -->
+        <a class="tool" href="https://webglreport.com/" target="_blank"><h2>WebGL Report</h2><p>Info o GPU i WebGL.</p></a>
+        <a class="tool" href="https://webglsamples.org/" target="_blank"><h2>WebGL Samples</h2><p>Przykłady WebGL.</p></a>
+        <a class="tool" href="https://threejs.org/examples/" target="_blank"><h2>Three.js</h2><p>3D w przeglądarce.</p></a>
+        <a class="tool" href="https://www.browserleaks.com/webgl" target="_blank"><h2>WebGL Leak</h2><p>Test WebGL.</p></a>
+        <a class="tool" href="https://webglstats.com/" target="_blank"><h2>WebGL Stats</h2><p>Dane o GPU/WebGL.</p></a>
+        <a class="tool" href="https://www.canis.io/tools/webgl-test/" target="_blank"><h2>WebGL Debug</h2><p>Debugowanie WebGL.</p></a>
+        <a class="tool" href="https://canvas-test.com/" target="_blank"><h2>Canvas Test</h2><p>Test Canvas.</p></a>
+        <a class="tool" href="https://browserleaks.com/canvas" target="_blank"><h2>Canvas Fingerprint</h2><p>Canvas GPU test.</p></a>
+        <a class="tool" href="https://jsfiddle.net/" target="_blank"><h2>JSFiddle</h2><p>Kod HTML/JS/CSS.</p></a>
+        <a class="tool" href="https://codepen.io/" target="_blank"><h2>CodePen</h2><p>Edytor online.</p></a>
+
+        <!-- ⚡ Wydajność & Strony -->
+        <a class="tool" href="https://www.webpagetest.org/" target="_blank"><h2>WebPageTest</h2><p>Test strony.</p></a>
+        <a class="tool" href="https://gtmetrix.com/" target="_blank"><h2>GTMetrix</h2><p>Analiza strony.</p></a>
+        <a class="tool" href="https://www.pingdom.com/tools/" target="_blank"><h2>Pingdom</h2><p>Monitorowanie stron.</p></a>
+        <a class="tool" href="https://tools.keycdn.com/performance" target="_blank"><h2>CDN Test</h2><p>Wydajność CDN.</p></a>
+        <a class="tool" href="https://www.seoptimer.com/" target="_blank"><h2>SEO Optimizer</h2><p>Analiza SEO.</p></a>
+        <a class="tool" href="https://pagespeed.web.dev/" target="_blank"><h2>PageSpeed</h2><p>Test Google.</p></a>
+        <a class="tool" href="https://www.uptrends.com/tools/uptime" target="_blank"><h2>Uptime Check</h2><p>Dostępność strony.</p></a>
+        <a class="tool" href="https://www.browsershots.org/" target="_blank"><h2>BrowserShots</h2><p>Zrzuty w przeglądarkach.</p></a>
+        <a class="tool" href="https://www.debugbear.com/" target="_blank"><h2>DebugBear</h2><p>Monitoring wydajności.</p></a>
+        <a class="tool" href="https://statuscake.com/tools/" target="_blank"><h2>StatusCake</h2><p>Narzędzia wydajności.</p></a>
+
+        <!-- 🔐 Bezpieczeństwo -->
+        <a class="tool" href="https://www.ssllabs.com/ssltest/" target="_blank"><h2>SSL Labs</h2><p>Test certyfikatu SSL.</p></a>
+        <a class="tool" href="https://securityheaders.com/" target="_blank"><h2>Security Headers</h2><p>HTTP headers.</p></a>
+        <a class="tool" href="https://observatory.mozilla.org/" target="_blank"><h2>Mozilla Observatory</h2><p>Test zabezpieczeń.</p></a>
+        <a class="tool" href="https://www.virustotal.com/" target="_blank"><h2>VirusTotal</h2><p>Skan plików/URL.</p></a>
+        <a class="tool" href="https://urlscan.io/" target="_blank"><h2>URLScan</h2><p>Skanowanie stron.</p></a>
+        <a class="tool" href="https://haveibeenpwned.com/" target="_blank"><h2>Have I Been Pwned</h2><p>Wycieki haseł.</p></a>
+        <a class="tool" href="https://www.fortiguard.com/webfilter" target="_blank"><h2>FortiGuard</h2><p>Kategoria URL.</p></a>
+        <a class="tool" href="https://appcheck-ng.com/free-tools/" target="_blank"><h2>AppCheck</h2><p>Skany bezpieczeństwa.</p></a>
+        <a class="tool" href="https://snyk.io/test/website-scanner/" target="_blank"><h2>Snyk Website</h2><p>Luki w stronie.</p></a>
+        <a class="tool" href="https://shodan.io/" target="_blank"><h2>Shodan</h2><p>Skan urządzeń online.</p></a>
+
+        <!-- 🔍 Różne -->
+        <a class="tool" href="https://regex101.com/" target="_blank"><h2>Regex Tester</h2><p>Test wyrażeń regularnych.</p></a>
+        <a class="tool" href="https://colorhexa.com/" target="_blank"><h2>Color Tools</h2><p>Kody kolorów.</p></a>
+        <a class="tool" href="https://www.rapidtables.com/tools/" target="_blank"><h2>RapidTables</h2><p>Narzędzia online.</p></a>
+        <a class="tool" href="https://jsonlint.com/" target="_blank"><h2>JSON Lint</h2><p>Walidacja JSON.</p></a>
+        <a class="tool" href="https://jshint.com/" target="_blank"><h2>JS Hint</h2><p>Sprawdzenie błędów JS.</p></a>
+        <a class="tool" href="https://validator.w3.org/" target="_blank"><h2>HTML Validator</h2><p>Weryfikacja HTML.</p></a>
+        <a class="tool" href="https://jigsaw.w3.org/css-validator/" target="_blank"><h2>CSS Validator</h2><p>Weryfikacja CSS.</p></a>
+        <a class="tool" href="https://developers.google.com/web/tools/chrome-devtools/" target="_blank"><h2>Chrome DevTools</h2><p>Debugowanie stron.</p></a>
+        <a class="tool" href="https://playcode.io/" target="_blank"><h2>PlayCode</h2><p>Edytor JS/HTML/CSS.</p></a>
+        <a class="tool" href="https://jsperf.com/" target="_blank"><h2>JSPerf</h2><p>Test wydajności JS.</p></a>
     </div>
 </div>
 
 <script>
-const concepts = [
-    "OpenGL", "GPU", "Canvas", "WebGL", "Shader", "Rasteryzacja", "Renderowanie",
-    "VRAM", "Frame Rate", "Antialiasing", "Texture Mapping", "Vertex Buffer",
-    "HTML5", "CSS3", "Flexbox", "Grid", "JavaScript", "WebAssembly", "DOM", "Canvas2D",
-    "WebRTC", "MediaStream", "ShaderProgram", "VertexArray"
-];
+    // Sekwencja przejść: kod diagnostyczny -> intro -> hub
+    setTimeout(() => {
+        document.getElementById('code-screen').style.display = 'none';
+    }, 3000); // po 3s znika kod
 
-const conceptDiv = document.getElementById('concepts');
-let i = 0;
+    setTimeout(() => {
+        document.getElementById('intro').style.display = 'flex';
+    }, 3000);
 
-// Pokaż pojęcia w szybkiej pętli
-const interval = setInterval(() => {
-    conceptDiv.textContent = concepts[i % concepts.length];
-    i++;
-}, 200);
-
-// Funkcja przejścia do hubu
-function showHub() {
-    clearInterval(interval); // zatrzymujemy zmianę pojęć
-    document.getElementById('code-screen').style.display = 'none';
-    document.getElementById('loader').style.display = 'none';
-    const hub = document.getElementById('hub');
-    hub.style.display = 'flex';
-    document.body.style.overflow = 'auto';
-}
-
-// Sekwencja: 2 sekundy kod diagnostyczny + 10 sekund animacja D
-setTimeout(() => {
-    document.getElementById('code-screen').style.display = 'none';
-    // pozostaw loader z D i pojęciami
-}, 2000);
-
-setTimeout(showHub, 12000); // po 12 sekundach pokaż hub
+    setTimeout(() => {
+        document.getElementById('intro').style.display = 'none';
+        document.getElementById('hub').style.display = 'flex';
+        document.body.style.overflow = 'auto';
+    }, 9000); // po 9s wchodzi hub
 </script>
 
 </body>
