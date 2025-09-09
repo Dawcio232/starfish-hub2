@@ -204,36 +204,56 @@ body, html {
 // HASŁO DO STRONY
 const PASSWORD = "3301";
 
-function checkPassword() {
-    const input = document.getElementById("password-input").value;
-    if(input === PASSWORD) {
-        document.getElementById("login-screen").style.display = "none";
-        document.getElementById("loader").style.opacity = 1;
-        startConceptsAnimation();
-        setTimeout(() => {
-            document.getElementById("loader").style.display = "none";
-            document.getElementById("hub").style.display = "block";
-            document.body.style.overflow = 'auto';
-        }, 10000); // 10 sekund animacji
-    } else {
-        alert("Niepoprawne hasło!");
-    }
-}
-
 // Animacja pojęć technicznych
 const concepts = [
     "OpenGL","GPU","Canvas","WebGL","Shader","Rasteryzacja","Renderowanie",
     "VRAM","Frame Rate","Antialiasing","Texture Mapping","Vertex Buffer",
     "HTML5","CSS3","Flexbox","Grid","JavaScript","WebAssembly","DOM","Canvas2D"
 ];
-let i = 0;
+let conceptIndex = 0;
+let conceptInterval;
+
 function startConceptsAnimation() {
     const conceptDiv = document.getElementById("concepts");
-    const interval = setInterval(() => {
-        conceptDiv.textContent = concepts[i % concepts.length];
-        i++;
+    conceptInterval = setInterval(() => {
+        conceptDiv.textContent = concepts[conceptIndex % concepts.length];
+        conceptIndex++;
     }, 200);
 }
+
+// Funkcja logowania
+function checkPassword() {
+    const input = document.getElementById("password-input").value.trim();
+    if(input === PASSWORD){
+        // ukryj ekran logowania
+        document.getElementById("login-screen").style.display = "none";
+
+        // pokaż loader i start animacji
+        const loader = document.getElementById("loader");
+        loader.style.opacity = 1;
+        startConceptsAnimation();
+
+        // po 10 sekundach pokaż hub
+        setTimeout(() => {
+            loader.style.display = "none";
+            document.getElementById("hub").style.display = "block";
+            document.body.style.overflow = "auto";
+            clearInterval(conceptInterval);
+        }, 10000);
+    } else {
+        alert("Niepoprawne hasło!");
+    }
+}
+
+// Upewnij się, że zdarzenia działają po załadowaniu DOM
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector("#login-screen button").addEventListener("click", checkPassword);
+    
+    // pozwala też zalogować przez Enter
+    document.querySelector("#password-input").addEventListener("keypress", (e) => {
+        if(e.key === "Enter") checkPassword();
+    });
+});
 </script>
 
 </body>
