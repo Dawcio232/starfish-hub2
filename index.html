@@ -200,61 +200,28 @@ body, html {
     </div>
 </div> <!-- koniec hub -->
 <script>
-// HASŁO DO STRONY
-const PASSWORD = "3301";
-
 // Animacja pojęć technicznych
 const concepts = [
     "OpenGL","GPU","Canvas","WebGL","Shader","Rasteryzacja","Renderowanie",
     "VRAM","Frame Rate","Antialiasing","Texture Mapping","Vertex Buffer",
     "HTML5","CSS3","Flexbox","Grid","JavaScript","WebAssembly","DOM","Canvas2D"
 ];
+
 let conceptIndex = 0;
-let conceptInterval;
 
-// Funkcja uruchamia animację
-function startConceptsAnimation() {
-    const conceptDiv = document.getElementById("concepts");
-    conceptInterval = setInterval(() => {
-        conceptDiv.textContent = concepts[conceptIndex % concepts.length];
-        conceptIndex++;
-    }, 200);
-}
+const conceptDiv = document.getElementById("concepts");
+const interval = setInterval(() => {
+    conceptDiv.textContent = concepts[conceptIndex % concepts.length];
+    conceptIndex++;
+}, 200);
 
-// Funkcja logowania
-function checkPassword() {
-    const input = document.getElementById("password-input").value.trim();
-    if(input === PASSWORD){
-        // ukryj ekran logowania
-        document.getElementById("login-screen").style.display = "none";
-
-        // pokaż loader i start animacji
-        const loader = document.getElementById("loader");
-        loader.style.opacity = 1;
-        startConceptsAnimation();
-
-        // po 10 sekundach pokaż hub
-        setTimeout(() => {
-            loader.style.display = "none";
-            document.getElementById("hub").style.display = "block";
-            document.body.style.overflow = "auto";
-            clearInterval(conceptInterval);
-        }, 10000);
-    } else {
-        alert("Niepoprawne hasło!");
-    }
-}
-
-// Podpinanie zdarzeń po załadowaniu DOM
-document.addEventListener("DOMContentLoaded", () => {
-    const loginButton = document.querySelector("#login-screen button");
-    const passwordInput = document.querySelector("#password-input");
-
-    loginButton.addEventListener("click", checkPassword);
-    passwordInput.addEventListener("keypress", (e) => {
-        if(e.key === "Enter") checkPassword();
-    });
-});
+// Po 10 sekundach pokazujemy hub
+setTimeout(() => {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("hub").style.display = "block";
+    document.body.style.overflow = 'auto';
+    clearInterval(interval);
+}, 10000);
 </script>
 
 </body>
